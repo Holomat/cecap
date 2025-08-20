@@ -33,15 +33,15 @@
             --spacing-xxl: 48px;
             
             /* Tipografía - Tamaños unificados */
-            --serif-size: 22px;
-            --serif-line-height: 30px;
+            --serif-size: 19px;
+            --serif-line-height: 27px;
             
-            --font-size-sm: 14px;
-            --font-size-base: 16px;
-            --font-size-md: 18px;
-            --font-size-lg: 20px;
-            --font-size-xl: 24px;
-            --font-size-xxl: 32px;
+            --font-size-sm: 11px;
+            --font-size-base: 13px;
+            --font-size-md: 15px;
+            --font-size-lg: 17px;
+            --font-size-xl: 21px;
+            --font-size-xxl: 29px;
             
             /* Bordes */
             --border-radius-sm: 4px;
@@ -87,13 +87,19 @@
             line-height: var(--serif-line-height) !important;
             color: #131313;
             font-weight: 400;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            word-break: normal;
         }
         
         /* ===== ELEMENTOS CON SORA ===== */
         h1, h2, h3, h4, h5, h6,
         .accordion-title {
             font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             line-height: 1.4;
             color: #131313;
         }
@@ -189,7 +195,7 @@
         /* Tiempo de lectura - estilo limpio */
         .reading-time {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 600;
             color: #4a4a4a;
             letter-spacing: 0.3px;
@@ -218,6 +224,8 @@
             padding: 0 var(--spacing-lg);
             margin-bottom: var(--spacing-md);
         }
+        
+        .article-content {
             background: transparent;
             padding: 0 var(--spacing-lg);
         }
@@ -274,7 +282,7 @@
         
         .accordion-title {
             font-size: var(--font-size-md);
-            font-weight: 400;
+            font-weight: 600;
             color: #131313;
             flex-grow: 1;
         }
@@ -293,6 +301,32 @@
         
         .accordion-text {
             padding-top: var(--spacing-sm);
+        }
+        
+        /* ===== RECUADROS DESTACADOS ===== */
+        .quote-box {
+            background: #f8f9fa;
+            border: none;
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xxl) 0;
+            border-radius: 36px;
+            position: relative;
+        }
+        
+        .quote-author {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: #131313;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .quote-title {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: #131313;
+            margin-bottom: var(--spacing-md);
         }
         
         /* ===== ENLACES CON SUBRAYADO GRIS ===== */
@@ -536,7 +570,283 @@
                 transform: translateY(0);
             }
         }
+        
+        /* ===== ANIMACIONES Y DIAGRAMAS ===== */
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: var(--spacing-xxl) 0;
+            padding: var(--spacing-xl);
+            background: #f8f9fa;
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .activities-diagram {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+        }
+        
+        .activity-icon {
+            opacity: 0;
+            animation: fadeInFloat 2s ease-out forwards;
+        }
+        
+        .activity-icon:nth-child(1) { animation-delay: 0.2s; }
+        .activity-icon:nth-child(2) { animation-delay: 0.4s; }
+        .activity-icon:nth-child(3) { animation-delay: 0.6s; }
+        .activity-icon:nth-child(4) { animation-delay: 0.8s; }
+        .activity-icon:nth-child(5) { animation-delay: 1.0s; }
+        .activity-icon:nth-child(6) { animation-delay: 1.2s; }
+        
+        .center-circle {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .process-diagram {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+        }
+        
+        .process-step {
+            opacity: 0;
+            animation: slideInFromLeft 1.5s ease-out forwards;
+        }
+        
+        .process-step:nth-child(1) { animation-delay: 0.3s; }
+        .process-step:nth-child(2) { animation-delay: 0.6s; }
+        .process-step:nth-child(3) { animation-delay: 0.9s; }
+        .process-step:nth-child(4) { animation-delay: 1.2s; }
+        
+        .connecting-line {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawLine 2s ease-out forwards;
+        }
+        
+        .connecting-line:nth-child(2) { animation-delay: 0.6s; }
+        .connecting-line:nth-child(3) { animation-delay: 0.9s; }
+        .connecting-line:nth-child(4) { animation-delay: 1.2s; }
+        
+        .timeline-container {
+            position: relative;
+            margin: var(--spacing-xxl) 0;
+            padding: var(--spacing-xl);
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .timeline-svg {
+            width: 100%;
+            max-width: 700px;
+            height: 180px;
+        }
+        
+        .timeline-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawTimeline 4s ease-out forwards;
+        }
+        
+        .timeline-point {
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        
+        .timeline-point:nth-child(2) { animation-delay: 1s; }
+        .timeline-point:nth-child(3) { animation-delay: 2s; }
+        .timeline-point:nth-child(4) { animation-delay: 3s; }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: var(--spacing-xxl) 0;
+            padding: var(--spacing-xl);
+            background: #f8f9fa;
+            border-radius: var(--border-radius-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-circle {
+            text-align: center;
+            position: relative;
+        }
+        
+        .stat-svg {
+            width: 120px;
+            height: 120px;
+        }
+        
+        .stat-bg {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 8;
+        }
+        
+        .stat-progress {
+            fill: none;
+            stroke: #186A7B;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            animation: fillCircle 3s ease-out forwards;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .stat-progress.percent-70 { animation-delay: 0.5s; }
+        .stat-progress.percent-22 { animation-delay: 1s; }
+        .stat-progress.percent-16 { animation-delay: 1.5s; }
+        
+        .stat-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Sora', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #131313;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .stat-number.stat-70 { animation-delay: 2s; }
+        .stat-number.stat-22 { animation-delay: 2.5s; }
+        .stat-number.stat-16 { animation-delay: 3s; }
+        
+        .stat-label {
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #131313;
+            margin-top: var(--spacing-sm);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .stat-label.label-70 { animation-delay: 2.2s; }
+        .stat-label.label-22 { animation-delay: 2.7s; }
+        .stat-label.label-16 { animation-delay: 3.2s; }
+        
+        @keyframes fadeInFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes drawLine {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes drawTimeline {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fillCircle {
+            0% {
+                stroke-dashoffset: 283;
+            }
+            100% {
+                stroke-dashoffset: calc(283 - (283 * var(--percentage) / 100));
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsivo para diagramas */
         @media (max-width: 768px) {
+            .diagram-container {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-xl) 0;
+            }
+            
+            .activities-diagram {
+                height: 250px;
+            }
+            
+            .process-diagram {
+                height: 150px;
+            }
+            
+            .timeline-svg {
+                height: 120px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: var(--spacing-xl);
+            }
+            
+            .stat-svg {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .stat-number {
+                font-size: 20px;
+            }
+        }
             .article-container {
                 padding: var(--spacing-md) 0;
             }
@@ -573,8 +883,19 @@
             }
             
             .reading-time {
-                font-size: 12px;
+                font-size: 9px;
                 margin-top: var(--spacing-xs);
+            }
+            
+            .quote-box {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-xl) 0;
+            }
+            
+            .quote-box::before {
+                font-size: 48px;
+                top: -5px;
+                left: var(--spacing-md);
             }
         }
     </style>
@@ -640,12 +961,7 @@
             
             <!-- Segunda sección -->
             <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
-                <!-- Nueva imagen antes del título -->
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7nVt6mI.jpeg" alt="Actividades en CECAP" class="article-image" style="margin-bottom: var(--spacing-lg); object-fit: contain; background: #f8f9fa;">
-                </div>
-                
-                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 24px; font-weight: 400; color: #131313; margin-bottom: var(--spacing-lg);">Qué son los CECAP y en quiénes impactan</h2>
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Qué son los CECAP y en quiénes impactan</h2>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     Con 22 centros en funcionamiento distribuidos en 16 departamentos de todo el país, los CECAP están dirigidos a jóvenes de entre 14 y 20 años que no están vinculados al sistema educativo formal ni al mundo del trabajo. Cada semestre, alrededor de unos 2.500 adolescentes forman parte del programa, de distintas maneras. De ellos, alrededor de 1.800 tienen una presencia estable y este número crece año a año.
@@ -655,14 +971,479 @@
                     La propuesta educativa combina <strong>talleres prácticos y artísticos, espacios de formación personal y social, recreación, deporte y orientación laboral</strong>. Pero su diferencial tiene que ver con una impronta que apuesta al acompañamiento afectivo, a la presencia y al vínculo humano.
                 </p>
                 
+                <!-- Diagrama de actividades -->
+                <div class="diagram-container" style="margin: var(--spacing-xl) 0;">
+                    <svg class="activities-diagram" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Círculo central -->
+                        <circle class="center-circle" cx="250" cy="150" r="45" fill="#186A7B" opacity="0.1" stroke="#186A7B" stroke-width="2"/>
+                        <text x="250" y="150" text-anchor="middle" dy="5" font-family="Sora" font-size="14" font-weight="600" fill="#131313">CECAP</text>
+                        
+                        <!-- Música -->
+                        <g class="activity-icon">
+                            <circle cx="150" cy="80" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <path d="M140 75 h8 v-8 c0-2 2-2 4 0 v16 c0 2-2 4-4 4s-4-2-4-4v-8z M152 67 v8" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="150" y="110" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Música</text>
+                        </g>
+                        
+                        <!-- Teatro -->
+                        <g class="activity-icon">
+                            <circle cx="350" cy="80" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <path d="M335 75 c0-8 8-8 8 0 v10 c0 8-8 8-8 0z M357 75 c0-8 8-8 8 0 v10 c0 8-8 8-8 0z" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="350" y="110" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Teatro</text>
+                        </g>
+                        
+                        <!-- Gastronomía -->
+                        <g class="activity-icon">
+                            <circle cx="420" cy="150" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <rect x="410" y="145" width="20" height="8" rx="2" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <line x1="415" y1="140" x2="415" y2="145" stroke="#186A7B" stroke-width="2"/>
+                            <line x1="420" y1="138" x2="420" y2="145" stroke="#186A7B" stroke-width="2"/>
+                            <line x1="425" y1="140" x2="425" y2="145" stroke="#186A7B" stroke-width="2"/>
+                            <text x="420" y="180" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Gastronomía</text>
+                        </g>
+                        
+                        <!-- Deportes -->
+                        <g class="activity-icon">
+                            <circle cx="350" cy="220" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <circle cx="350" cy="220" r="8" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <path d="M342 215 l16 0 M342 225 l16 0 M345 212 l0 16 M355 212 l0 16" stroke="#186A7B" stroke-width="1"/>
+                            <text x="350" y="250" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Deportes</text>
+                        </g>
+                        
+                        <!-- Arte -->
+                        <g class="activity-icon">
+                            <circle cx="150" cy="220" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <rect x="140" y="215" width="20" height="15" rx="2" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <circle cx="145" cy="222" r="2" fill="#186A7B"/>
+                            <circle cx="155" cy="225" r="2" fill="#186A7B"/>
+                            <text x="150" y="250" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Arte</text>
+                        </g>
+                        
+                        <!-- Formación Social -->
+                        <g class="activity-icon">
+                            <circle cx="80" cy="150" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <circle cx="75" cy="145" r="4" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <circle cx="85" cy="145" r="4" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <path d="M70 155 c0-3 3-5 5-5 s5 2 5 5 M80 155 c0-3 3-5 5-5 s5 2 5 5" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="80" y="180" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Formación</text>
+                        </g>
+                        
+                        <!-- Líneas conectoras -->
+                        <line x1="205" y1="120" x2="225" y2="135" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                        <line x1="295" y1="120" x2="275" y2="135" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                        <line x1="375" y1="150" x2="295" y2="150" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                        <line x1="295" y1="180" x2="275" y2="165" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                        <line x1="205" y1="180" x2="225" y2="165" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                        <line x1="125" y1="150" x2="205" y2="150" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
+                    </svg>
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     Veinte centros cuentan, además, con convenios con UTU y Secundaria, lo que permite a los adolescentes volver a cursar simultáneamente, su educación media básica, de una forma diferente. "Algunos entran con sexto de escuela y, dos años después, con esfuerzo y constancia mediante, salen con tercero de liceo aprobado. Eso les permite estar en la puerta del bachillerato", explica Alende.
                 </p>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
-                    Pero más allá de los contenidos que se enseñan en cada taller, lo que distingue a los CECAP tiene que ver con la mirada sobre el otro: "El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar", resume Stefanie, coordinadora del centro de Fray Bentos. "Se toma lo que ellos saben, lo que les interesa, sus posibilidades. Y desde ahí se construye", agrega.
+                    Pero más allá de los contenidos que se enseñan en cada taller, lo que distingue a los CECAP tiene que ver con la mirada sobre el otro: "El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar", resume <strong>Stefanie</strong>, coordinadora del centro de Fray Bentos. "Se toma lo que ellos saben, lo que les interesa, sus posibilidades. Y desde ahí se construye", agrega.
                 </p>
             </section>
+
+            <!-- Tercera sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Un lugar donde prima lo humano</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    La pedagogía de los CECAP no empieza en el aula. Empieza en la puerta. "Si vos venís a mi casa y yo te espero en la puerta, porque estoy esperando que vengas y quiero darte la bienvenida desde ese momento, eso cambia todo", dice Isabel Alende. Y es así como reciben los referentes a cada joven que llega a los CECAP.
+                </p>
+                
+                <!-- Diagrama del proceso de hospitalidad pedagógica -->
+                <div class="diagram-container" style="margin: var(--spacing-xl) 0;">
+                    <svg class="process-diagram" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Paso 1: Esperar -->
+                        <g class="process-step">
+                            <circle cx="80" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <path d="M70 90 h20 v20 h-20z M80 85 v-10 M75 85 h10" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="80" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Esperar</text>
+                        </g>
+                        
+                        <!-- Flecha 1 -->
+                        <line class="connecting-line" x1="110" y1="100" x2="150" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Paso 2: Recibir -->
+                        <g class="process-step">
+                            <circle cx="180" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <path d="M170 95 h20 v10 h-20z M175 90 l5 5 l5-5" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="180" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Recibir</text>
+                        </g>
+                        
+                        <!-- Flecha 2 -->
+                        <line class="connecting-line" x1="210" y1="100" x2="250" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Paso 3: Preguntar -->
+                        <g class="process-step">
+                            <circle cx="280" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <path d="M270 90 q5-5 10 0 q5 5 0 10 l-5 5 M275 110 v2" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="280" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Preguntar</text>
+                        </g>
+                        
+                        <!-- Flecha 3 -->
+                        <line class="connecting-line" x1="310" y1="100" x2="350" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Paso 4: Acompañar -->
+                        <g class="process-step">
+                            <circle cx="380" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <circle cx="375" cy="95" r="3" fill="#186A7B"/>
+                            <circle cx="385" cy="95" r="3" fill="#186A7B"/>
+                            <path d="M370 105 c0-3 3-5 5-5 s5 2 5 5 M380 105 c0-3 3-5 5-5 s5 2 5 5" stroke="#186A7B" stroke-width="2" fill="none"/>
+                            <text x="380" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Acompañar</text>
+                        </g>
+                        
+                        <!-- Definición del marcador de flecha -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#186A7B"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <!-- Acordeón sobre hospitalidad pedagógica -->
+                <div class="accordion" style="margin: var(--spacing-xl) 0;">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-toggle"></button>
+                            <div class="accordion-title">¿Qué es la hospitalidad pedagógica?</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                Esperar, recibir, preguntar, acompañar; CECAP funciona con el concepto de <strong>hospitalidad pedagógica</strong>, desarrollado por Luis Manuel Guerrero Ramos. Se trata de un enfoque de enseñanza que prioriza la relación entre docentes y estudiantes, con base en el respeto, la acogida y la creación de un ambiente seguro para el aprendizaje, con centro en la atención al otro, el reconocimiento de su individualidad y la promoción del diálogo.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Por eso, en los CECAP, la joven o el joven que llega no es un número ni un caso más, es una persona con potencial, historia, deseos, dudas y miedos. "Si te llamás Juan pero querés que te diga Mariela, te digo Mariela. Porque tiene que ver con tu identidad, con tu historia y eso hay que respetarlo", explica Isabel Alende.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Cuando una joven o un joven llega a CECAP, se lo invita a participar de una entrevista, en la que es recibido por un educador, que es quien le cuenta de qué se trata la experiencia, pero sobre todo, escucha al adolescente: se le consulta sobre sus motivaciones e intereses. Además, se le presenta al estudiante un <strong>acuerdo pedagógico</strong>, en formato escrito, que se lee de forma compartida en la entrevista, antes de ser firmado.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    A través de este documento, el estudiante se compromete a participar y a formar parte de un grupo, en un horario determinado. Este acuerdo acompaña todo el trayecto del estudiante en el CECAP y se va trabajando y revisando, en conjunto con el educador o referente.
+                </p>
+            </section>
+
+            <!-- Cuarta sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Confiar en los jóvenes</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Para muchas y muchos jóvenes, CECAP es un lugar donde alguien les pregunta qué quieren, qué les gusta, qué saben hacer. Y aunque a veces la respuesta no es sencilla, lo importante es el camino. Por eso, quienes llegan sin tener claro qué es eso que saben o que les interesa aprender, no están perdidos: tienen la oportunidad de descubrirlo.
+                </p>
+                
+                <!-- Imagen de actividades grupales -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/nveeiMU.jpeg" alt="Jóvenes desarrollando sus talentos en CECAP" class="article-image">
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "Uno de los desafíos más importantes que tenemos es encontrar la motivación en estos jóvenes, teniendo en cuenta que muchas veces enfrentan obstáculos grandes, dificultades emocionales, falta de apoyo en sus núcleos familiares, problemas de conducta o complejidades para establecer vínculos", explica <strong>Juan Pablo Leguizamo</strong>, educador referente en el CECAP de Fray Bentos, donde trabaja desde hace ocho años.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Ante esa realidad, Juan Pablo cree que lo más importante es tener empatía: "Esa es la forma de buscar la motivación de los gurises, basándonos siempre en sus fortalezas, que son muchas, y resaltando lo positivo en todo momento", asegura. De hecho, para él, eso es lo que más le gusta de su trabajo en CECAP: poder inspirar, motivar y ver el crecimiento en el proceso de cada joven.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "Muchas veces pasa que los gurises llegan diciendo que no saben hacer nada", cuenta Isabel Alende. "Pero después, cuando empezás a charlar con ellos, te dicen que cuidan a sus hermanos, que cocinan, que se encargan de sus abuelos y no podés creer. Hay un montón de trabajo no remunerado, sobre todo en las gurisas, que es invisibilizado. Y nosotros tratamos de resignificar eso, de hacerlo valer", dice.
+                </p>
+            </section>
+
+            <!-- Quinta sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Aprender haciendo, otra forma posible</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    En CECAP aprender tiene que ver con la experiencia, con el hacer. Hay tela para cortar, madera para lijar, canciones para escribir, obras para montar, mates compartidos, conflictos por resolver. "Si yo te digo que hagas una división de dos cifras, capaz me decís que no te acordás cómo se hace", ejemplifica Isabel. "Pero si te digo que tenemos que cortar una tela entre tres personas, entonces empezamos a ver cómo hacerlo. Y ahí, aparece la división", explica.
+                </p>
+                
+                <!-- Imagen de talleres creativos -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/IL7j32E.jpeg" alt="Aprendizaje a través del arte y los talleres" class="article-image">
+                </div>
+                
+                <!-- Acordeón sobre el arte -->
+                <div class="accordion" style="margin: var(--spacing-xl) 0;">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-toggle"></button>
+                            <div class="accordion-title">¿Qué papel juega el arte en CECAP?</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                El arte ocupa un lugar central en esa construcción: música, teatro, plástica, danza. "Nos dimos cuenta de que muchos pueden decir un montón de cosas rapeando, que tal vez no pueden decir escribiendo. El arte permite expresar, mostrar, canalizar. Y ahí pasan cosas increíbles", cuenta la coordinadora nacional. "Por eso, en CECAP, la enseñanza se basa en aquello que queremos lograr. A partir de ahí, vemos qué necesitamos aprender".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Aprender haciendo es la clave. Pero también tiene que ver con aprender deseando, aprender con ganas. "Nadie aprende lo que no desea. Y si no conocés, no podés desear. Por eso, el primer semestre en los CECAP es para mostrar a los jóvenes todas las actividades que tenemos. Para que puedan conocer y así elegir. Para que sientan que pueden", dice Alende.
+                </p>
+            </section>
+
+            <!-- Sexta sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Una comunidad educativa que abraza</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    El equipo de cada CECAP está compuesto por coordinadores, educadores referentes, talleristas y técnicos de distintas áreas. Ellos son quienes sostienen el día a día de cada centro, en cada rincón de nuestro país. Con escucha, compromiso y paciencia, construyen el presente y el futuro de los gurises que llegan para buscar un nuevo camino.
+                </p>
+                
+                <!-- Imagen de equipos educativos -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/nlknNgu.jpeg" alt="Equipos educativos de CECAP" class="article-image">
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "Todos los que participan de los CECAP aportan contención, confianza, afecto. En los centros se construyen vínculos cercanos y respetuosos que permiten que los gurises se animen a aprender, a expresarse, a construir su camino", dice Stefanie.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Para Juan Pablo, el trabajo como educador referente implica "tener la empatía necesaria para buscar y encontrar la motivación de los jóvenes". Reconoce que muchos llegan con baja autoestima, dificultades para vincularse o falta de confianza por parte de sus redes. Por eso, cada avance es una conquista y no hay avances pequeños, son todos significativos: "lo que más me gusta es ver su crecimiento y ver cómo se abren en el proceso", asegura.
+                </p>
+            </section>
+
+            <!-- Séptima sección: José -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">José: la voz de un estudiante</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    <strong>José Suárez</strong> es estudiante del CECAP de Fray Bentos. Llegó por recomendación de Richard, el adscripto del liceo al que iba antes. Hasta entonces, José no sabía que existía esta propuesta. Se acercó sin saber qué esperar, pero la bienvenida fue muy buena: "Me pareció un lugar muy lindo desde el principio y, desde las primeras semanas, trabajé con los talleristas y con mis compañeros", cuenta.
+                </p>
+                
+                <!-- Timeline de José -->
+                <div class="timeline-container">
+                    <svg class="timeline-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Línea principal del timeline -->
+                        <path class="timeline-path" d="M50 90 Q200 90 250 90 T450 90 T650 90" stroke="#186A7B" stroke-width="3" fill="none"/>
+                        
+                        <!-- Punto 1: UTU -->
+                        <g class="timeline-point">
+                            <circle cx="150" cy="90" r="12" fill="#e0e0e0" stroke="#131313" stroke-width="2"/>
+                            <text x="150" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">UTU</text>
+                            <text x="150" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Sin motivación</text>
+                        </g>
+                        
+                        <!-- Punto 2: Recomendación -->
+                        <g class="timeline-point">
+                            <circle cx="300" cy="90" r="12" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
+                            <text x="300" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Recomendación</text>
+                            <text x="300" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Richard (adscripto)</text>
+                        </g>
+                        
+                        <!-- Punto 3: CECAP -->
+                        <g class="timeline-point">
+                            <circle cx="450" cy="90" r="12" fill="#186A7B" stroke="#131313" stroke-width="2"/>
+                            <text x="450" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">CECAP</text>
+                            <text x="450" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">"Me cambió una banda"</text>
+                        </g>
+                        
+                        <!-- Punto 4: Futuro -->
+                        <g class="timeline-point">
+                            <circle cx="600" cy="90" r="12" fill="#131313" stroke="#186A7B" stroke-width="2"/>
+                            <text x="600" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Futuro</text>
+                            <text x="600" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Electromecánica</text>
+                        </g>
+                        
+                        <!-- Actividades actuales -->
+                        <text x="450" y="120" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Gastronomía • Música • Deportes</text>
+                        
+                        <!-- Frase destacada -->
+                        <text x="350" y="150" text-anchor="middle" font-family="STIX Two Text" font-size="14" font-style="italic" fill="#131313">"Tengo proyectos a futuro"</text>
+                    </svg>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Actualmente, José hace varios talleres, pero los que más disfruta son Gastronomía, Ensamble Musical, Espacio Grupal y Recreación y Deporte. Sin embargo, lo que él mismo destaca es que se siente muy querido y acompañado: "Tengo que agradecerles a todos porque desde el primer día me recibieron con los brazos abiertos y eso no tiene precio", dice.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    En ese sentido, José destaca el compañerismo que se vive en el CECAP al que asiste. "En los grupos siempre intentamos ser compañeros unos con otros y ser unidos. Eso es algo que no encontré en otros lugares y es algo a destacar", asegura. En este tiempo, José se hizo amigos, que son "casi hermanos", según cuenta.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "El CECAP me cambió una banda", dice José. Él mismo recuerda que, antes, cuando iba a la UTU, muchas veces lo hacía sin ganas o con falta de motivación. Eso cambió cuando encontró su lugar en el CECAP: "Tengo proyectos a futuro. Quiero terminar el CECAP e irme a estudiar Electromecánica a Paysandú", concluye.
+                </p>
+            </section>
+
+            <!-- Octava sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">La educación como un hecho reparador</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    La propuesta educativa de CECAP se organiza en torno a ejes anuales y comunes a todos los centros, que poco a poco, se van actualizando. Actualmente, hay encuestas de clima, encuentros de delegados, muestras de cierre, espectáculos en el INJU y producciones audiovisuales hechas por los estudiantes.
+                </p>
+                
+                <!-- Estadísticas animadas -->
+                <div class="stats-container">
+                    <div class="stat-circle">
+                        <svg class="stat-svg" viewBox="0 0 120 120">
+                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
+                            <circle class="stat-progress percent-70" cx="60" cy="60" r="45" style="--percentage: 70"/>
+                            <text class="stat-number stat-70" x="60" y="65" text-anchor="middle">70%</text>
+                        </svg>
+                        <div class="stat-label label-70">Inserción laboral<br>o educativa</div>
+                    </div>
+                    
+                    <div class="stat-circle">
+                        <svg class="stat-svg" viewBox="0 0 120 120">
+                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
+                            <circle class="stat-progress percent-22" cx="60" cy="60" r="45" style="--percentage: 22"/>
+                            <text class="stat-number stat-22" x="60" y="65" text-anchor="middle">22</text>
+                        </svg>
+                        <div class="stat-label label-22">Centros en<br>funcionamiento</div>
+                    </div>
+                    
+                    <div class="stat-circle">
+                        <svg class="stat-svg" viewBox="0 0 120 120">
+                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
+                            <circle class="stat-progress percent-16" cx="60" cy="60" r="45" style="--percentage: 80"/>
+                            <text class="stat-number stat-16" x="60" y="65" text-anchor="middle">16</text>
+                        </svg>
+                        <div class="stat-label label-16">Departamentos<br>del país</div>
+                    </div>
+                </div>
+                
+                <!-- Acordeón sobre el impacto -->
+                <div class="accordion" style="margin: var(--spacing-xl) 0;">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-toggle"></button>
+                            <div class="accordion-title">¿Cómo se mide el verdadero impacto de CECAP?</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                El impacto de este programa no se mide solo en cuadernos, ejercicios o evaluaciones. "En CECAP aprendí que la educación va más allá de transmitir conocimientos. Lo más importante es generar vínculos porque es más fácil construir un acto educativo si hay un buen vínculo", asegura Stefanie. "A veces, una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Para la coordinadora, lo más importante es confiar en los procesos, mirar más allá y valorar los pequeños logros cotidianos. "Cada joven tiene una familia detrás y lucha por algo que no es visible. Por eso, cuando se sienten acompañados, vuelven a florecer", dice. "Aprendo de los gurises todo el tiempo, de su creatividad, de su fuerza, de su resiliencia. Estar en CECAP me reafirma cada día que la educación puede ser un acto profundamente humano, reparador y esperanzador", afirma.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Ver crecer a los gurises, encontrarlos después en otros lugares, en la calle o en algún trabajo, es algo que a Stefanie le ha sucedido y que agradece. "Recuerdo casos puntuales y complejos, de adolescentes que llegaron al centro sin esperanza de socializar o de pertenecer a un grupo y, con el tiempo, encuentran su lugar", dice. Para eso, hacerles sentir confianza y mostrarles que pueden creer en ellos mismos es la clave.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    A nivel de equipo, Stefanie destaca que el compromiso es fundamental. Tener un objetivo y trabajar de forma conjunta y coordinada para lograrlo es el camino que encuentran los equipos de CECAP. "Eso es mucho y deja mucho", asegura. "Me gustaría que la sociedad conociera qué hace este programa, porque es una oportunidad para gurises que, por distintos motivos, tuvieron que dejar los estudios", dice.
+                </p>
+            </section>
+
+            <!-- Novena sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Los desafíos, una invitación a seguir</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Los retos están presentes todos los días y no son menores. La pandemia trajo más ausentismo, la violencia social muchas veces golpea cerca: hay centros con guardias de seguridad, con cercos, con realidades complejas.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "A veces nos invade otro modelo. Algunos gurises llegan armados porque es la única forma que encuentran para volver a sus casas. Nosotros tratamos de construir otra lógica, pero tenemos que entender la dualidad de los dos mundos que viven", reconoce Isabel. "Es brutal cómo los gurises asumen que el modo de relacionamiento entre ellos tiene unos códigos de la puerta para adentro de CECAP y tiene otros para afuera", cuenta. El desafío está en expandir los códigos o las formas que se viven en los centros.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    A pesar de los retos y las dificultades, el horizonte está en la mente y también en el quehacer cotidiano. "Fuimos escalando algunos peldaños con este programa. Hoy, la propuesta está institucionalizada, pero hemos pasado por distintas situaciones", asegura Isabel. "El programa creció mucho, pero puede seguir creciendo", agrega.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Ese es uno de los objetivos de quienes forman parte de CECAP. Por eso, cotidianamente piensan en cómo lograrlo. Hay desafíos materiales y otros que tienen que ver con las trayectorias educativas: "El desafío que tenemos para los próximos años es acompañar a esos gurises que quedan en la puerta del bachillerato, después de su experiencia en CECAP", dice Isabel.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Stefanie, por su parte, también tiene expectativas de cara a los próximos años: "Me imagino un CECAP con mejor infraestructura, con más comodidades, con más proyectos comunitarios", dice. Y agrega: "Un lugar donde cada joven pueda sentirse valorado, acompañado y motivado para construir su proyecto de vida".
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Para Juan Pablo, mientras tanto, también es importante que el programa se conozca más: "Me parece importante que la sociedad conozca los beneficios que tiene este programa, que ayuda a esos gurises que, por distintos motivos, tuvieron que dejar los estudios y para los que no hay tantas propuestas", asegura.
+                </p>
+            </section>
+
+            <!-- Décima sección -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 24px; font-weight: 400; color: #131313; margin-bottom: var(--spacing-lg);">Una apuesta educativa que abraza</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    En una sociedad que muchas veces expulsa o segrega —de forma explícita o silenciosa— a jóvenes, estudiantes o trabajadores, los CECAP van contracorriente: reciben, abrazan, sostienen. Y todo eso, a través de personas comprometidas con una propuesta educativa distinta, basada en el aprender haciendo. Allí donde otros ven fracaso o desinterés, CECAP ve potencial, deseo, posibilidad. Y por eso, cada vínculo importa. Cada encuentro se valora. Cada historia es única y necesaria.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "No da lo mismo que vengas o que no vengas", repiten en todos los centros. Porque detrás de cada joven hay una realidad y camino recorrido. Hay, a veces, una historia que tal vez no fue escuchada en otro lado. En CECAP, cada gurí es alguien. Y eso, para muchos, cambia todo.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Lo que se juega en estos centros no es solo la adquisición de aprendizajes o una trayectoria educativa. Se juega la oportunidad de recuperar la confianza, de saberse parte de algo, de encontrar un lugar en el mundo, un espacio de pertenencia. "CECAP no etiqueta, no juzga", dice Stefanie. Y esa decisión ética y política es la que sostiene toda la propuesta: construir una educación donde el afecto, la escucha y la presencia adulta tengan tanto valor como los contenidos.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Los educadores y referentes no son solo formadores: son compañeros de ruta, un oído que escucha y un hombro que sostiene. Acompañan desde la empatía, respetan los tiempos, celebran cada avance. Y en ese vínculo humano —genuino, paciente, comprometido— se funda la transformación.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    "Una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido", dice Stefanie. Y esa frase resume el corazón del programa: poner a los jóvenes en el centro, no como destinatarios de una oferta, sino como protagonistas de sus propios caminos.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Porque todos tienen algo para dar, algo para aprender, algo para construir. Y porque, incluso en contextos difíciles, la educación puede ser un acto profundamente humano, reparador y esperanzador.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    CECAP no es solo un centro. Es una oportunidad real. Es un espacio donde volver a creer en uno mismo, en los demás y en el futuro.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    En un sistema educativo que muchas veces expulsa a quienes más lo necesitan, los CECAP se aferran a una convicción: no da lo mismo que vengas o que no vengas. Porque cada presencia importa. Porque cada historia merece ser escuchada. Porque todos tienen algo para dar y para aprender.
+                </p>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    Y porque, como dice una de las coordinadoras: "A veces, una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido".
+                </p>
+            </section>
+
+            <!-- Recuadros de Gabriel Quirici -->
+            <div class="quote-box">
+                <div class="quote-author">Gabriel Quirici</div>
+                <p class="body-text" style="margin-bottom: 0;">
+                    "Los CECAP constituyen una forma de abordar la vinculación de los jóvenes a la educación a través del trabajo, el arte y otras propuestas, en contextos vulnerables, con un enfoque de cercanía muy valioso. Esto permite que los equipos alcancen a un gran número de jóvenes y familias, a través del trabajo de coordinadores, educadores, talleristas y referentes, para revincularlos en las semanas pasadas.
+                </p>
+                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                    La propuesta, además, tiene un enorme potencial para llevar a cabo una estrategia de alcance nacional, a través del ministerio de Educación y Cultura, que proporciona recursos humanos, propuestas pedagógicas y materiales y que interactúa con el aporte de actores locales, especialmente intendencias, pero también colectivos sociales. Esto es una clara demostración de las posibles sinergias positivas entre lo nacional, lo municipal y la descentralización como política de inclusión, democrática y educativa".
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <div class="quote-author">Gabriel Quirici</div>
+                <div class="quote-title">El lugar de los CECAPS para la política Educativa</div>
+                <p class="body-text" style="margin-bottom: 0;">
+                    La asistencia, la continuidad y la culminación de los cursos siguen siendo un desafío para garantizar el acceso universal a la educación de nuestros adolescentes. En este contexto, cobran mayor relevancia los CECAP, con la combinación de propuestas diversas, educación no formal y un fuerte enfoque de cercanía pedagógica. Hoy, estos centros promueven una experiencia necesaria y valiosa, que merece ser observada, respaldada y articulada con mayor énfasis dentro de la trama institucional de la educación para nuestros jóvenes.
+                </p>
+                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                    La propuesta posee un enorme potencial para ser fortalecida y para convertirse en un factor multiplicador de buenas prácticas y modelos de organización educativa dirigidos a estudiantes en situación de alta vulnerabilidad.
+                </p>
+                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                    Se trata, además, de una estrategia virtuosa de alcance nacional, impulsada por el Ministerio de Educación y Cultura, que aporta materiales, recursos humanos y propuestas pedagógicas, y que se articula con diversos actores locales —principalmente las intendencias, pero también colectivos sociales y sindicales—, responsables de proveer los espacios físicos y organizar la distribución de los recursos. Es un ejemplo claro de las sinergias posibles entre lo nacional y lo municipal, y de cómo la descentralización puede operar como una política inclusiva, democrática y educativa.
+                </p>
+                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                    Los CECAP trabajan con jóvenes en contextos de alta vulnerabilidad a través del concepto de aprender haciendo, con un enfoque de proximidad que resulta especialmente valioso. Esta característica, entre otras, ha permitido que los equipos de coordinación, educadores, talleristas y referentes docentes de distintas localidades desplieguen una notable capacidad para tejer redes y conectar con un gran número de jóvenes y familias después del reciente lanzamiento de la campaña de revinculación, impulsada por el MIDES y la ANEP.
+                </p>
+                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                    En definitiva, los CECAP representan una propuesta original y creativa de abordaje territorial, con una cercanía educativa que les permite integrarse activamente a sus comunidades y sostener, en el tiempo, oportunidades concretas para acceder a una educación de mayor calidad.
+                </p>
+            </div>
         </div>
     </div>
 
