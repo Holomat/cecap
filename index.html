@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Los CECAP, un espacio para volver a creer en las oportunidades</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== IMPORTAR TIPOGRAFÍA ===== */
-        @import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
-        
         /* ===== VARIABLES CSS ===== */
         :root {
-            /* Colores */
+            /* Colores - Actualizados con color institucional */
             --primary-color: #131313;
             --secondary-color: #333333;
+            --accent-color: #186A7B;
+            --accent-hover: #145761;
+            --accent-light: #7fb3c3;
             --background-light: #ffffff;
             --background-cream: #f8f9fa;
             --text-muted: #6b7280;
+            --text-light: #718096;
+            --text-lighter: #a0aec0;
             --shadow-light: rgba(19, 19, 19, 0.08);
             --shadow-medium: rgba(19, 19, 19, 0.15);
             --border-light: rgba(19, 19, 19, 0.1);
+            --border-color: #e2e8f0;
             --gray-highlight: #F3F3F3;
             --gray-highlight-light: rgba(243, 243, 243, 0.3);
             
@@ -43,6 +48,38 @@
             --font-size-xl: 21px;
             --font-size-xxl: 29px;
             
+            /* Typography - The Verge Style */
+            --font-display: 'Sora', system-ui, -apple-system, sans-serif;
+            --font-body: 'STIX Two Text', Georgia, 'Times New Roman', serif;
+            --font-ui: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            /* Font Sizes - More precise scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            --text-7xl: 4.5rem;
+
+            /* Spacing - More refined */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            
             /* Bordes */
             --border-radius-sm: 4px;
             --border-radius-md: 8px;
@@ -54,19 +91,23 @@
             --transition-normal: 0.3s ease;
             --transition-slow: 0.5s ease;
         }
-        
+
         /* ===== CSS RESET ===== */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html {
             font-size: 16px;
             scroll-behavior: smooth;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
         body {
             font-family: 'STIX Two Text', Georgia, serif;
             font-size: var(--serif-size);
@@ -76,8 +117,235 @@
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
-        
+
+        /* ===== HEADER MODERNO ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--background-light);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            padding: 0 var(--space-6);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+            position: relative;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-list {
+            display: none;
+            list-style: none;
+            gap: var(--space-8);
+        }
+
+        .nav-link {
+            font-family: var(--font-ui);
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: var(--space-2) 0;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 4px;
+            padding: var(--space-2);
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-toggle.nav-toggle-open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.nav-toggle-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.nav-toggle-open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* ===== HERO SECTION MODERNO ===== */
+        .hero {
+            background: var(--background-light);
+            padding: var(--space-20) var(--space-6) var(--space-24);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--space-16);
+            align-items: start;
+            width: 100%;
+        }
+
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: transparent;
+            color: var(--accent-color);
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-6);
+        }
+
+        .category-tag::before {
+            content: '+';
+            font-size: var(--text-sm);
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            margin-bottom: var(--space-4);
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-ui);
+            font-size: var(--text-2xl);
+            line-height: 1.4;
+            color: var(--text-light);
+            margin-bottom: var(--space-8);
+            font-weight: 400;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-8);
+            font-family: var(--font-ui);
+            margin-top: var(--space-8);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: var(--text-base);
+        }
+
+        .author-name::before {
+            content: 'Por ';
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .publish-date {
+            color: var(--text-light);
+            font-size: var(--text-sm);
+            font-weight: 400;
+        }
+
+        .publish-date::before {
+            content: '/ ';
+            margin: 0 var(--space-2);
+        }
+
+        .social-share {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--background-cream);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            color: var(--background-light);
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            transform: translateY(var(--space-8));
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover .hero-img {
+            transform: scale(1.02);
+        }
+
         /* ===== TIPOGRAFÍA BASE ===== */
         p, 
         .body-text, 
@@ -94,7 +362,7 @@
             -ms-hyphens: auto;
             word-break: normal;
         }
-        
+
         /* ===== ELEMENTOS CON SORA ===== */
         h1, h2, h3, h4, h5, h6,
         .accordion-title {
@@ -103,109 +371,29 @@
             line-height: 1.4;
             color: #131313;
         }
-        
-        h1 {
-            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: clamp(45px, 8vw, 75px);
-            font-weight: 400;
-            margin-bottom: var(--spacing-sm);
-            padding-top: 0;
-            letter-spacing: -0.03em;
-            line-height: 1.25;
-            position: relative;
-            padding-bottom: calc(1.25em * 0.2);
-            color: #131313;
-            background-image: 
-                linear-gradient(transparent 0%, transparent calc(1.25em - 1px), #e0e0e0 calc(1.25em - 1px), #e0e0e0 1.25em, transparent 1.25em);
-            background-size: 100% 1.25em;
-            background-repeat: repeat-y;
-            background-position: 0 0;
-        }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: calc(1.25em * 0.15);
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #e0e0e0;
-        }
-        
-        /* Quitar el subrayado del título principal */
-        h1::after {
-            display: none;
-        }
-        
-        /* Palabra destacada en el título - estilo The Verge */
-        .title-highlight {
-            position: relative;
-            display: inline-block;
-            color: #131313;
-            z-index: 1;
-        }
-        
-        .title-highlight::before {
-            display: none;
-        }
-        
-        /* Subtítulo estilo The Verge */
-        .subtitle-verge {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: clamp(18px, 3vw, 24px);
-            font-weight: 400;
-            color: #2a2a2a;
-            line-height: 1.4;
-            margin-top: var(--spacing-lg);
-            max-width: 600px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-        
-        /* ===== TEXTO EN NEGRITA CON SERIF ITÁLICA ===== */
-        strong, b {
-            font-family: 'STIX Two Text', Georgia, serif;
-            font-weight: 500;
-            font-style: italic;
-            color: #131313;
-            font-size: var(--serif-size);
-        }
-        
+
         /* ===== LAYOUT PRINCIPAL ===== */
         .article-container {
-            max-width: 800px;
+            max-width: 60ch; /* 60 caracteres máximo */
             margin: 0 auto;
             padding: var(--spacing-xl) 0;
             min-height: 100vh;
-        }
-        
-        .article-header {
-            text-align: left;
-            padding: calc(var(--spacing-xxl) * 2.5) var(--spacing-lg) var(--spacing-lg);
-            margin: 0 0 var(--spacing-lg) 0;
-            background: transparent;
-            border-radius: 0;
             position: relative;
-            overflow: hidden;
         }
-        
-        .article-header::before {
-            display: none;
+
+        .article-content {
+            background: transparent;
+            padding: 0 var(--spacing-lg);
+            position: relative;
+            max-width: 60ch; /* 60 caracteres máximo */
         }
-        
-        /* Tiempo de lectura - estilo limpio */
-        .reading-time {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            color: #4a4a4a;
-            letter-spacing: 0.3px;
-            text-transform: none;
-            margin-top: var(--spacing-sm);
-            opacity: 0.8;
-            display: inline-block;
+
+        .image-container {
+            padding: 0 var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            max-width: 60ch; /* 60 caracteres máximo */
         }
-        
-        /* ===== IMAGEN DEL ARTÍCULO ===== */
+
         .article-image {
             width: 100%;
             height: 400px;
@@ -214,28 +402,28 @@
             display: block;
             margin: 0 0 var(--spacing-xl) 0;
             transition: transform var(--transition-normal);
+            border-radius: var(--border-radius-md);
         }
-        
+
         .article-image:hover {
             transform: scale(1.02);
         }
-        
-        .image-container {
-            padding: 0 var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
+
+        /* ===== TEXTO EN NEGRITA CON SERIF ITÁLICA ===== */
+        strong, b {
+            font-family: 'STIX Two Text', Georgia, serif;
+            font-weight: 500;
+            font-style: italic;
+            color: #131313;
+            font-size: var(--serif-size);
         }
-        
-        .article-content {
-            background: transparent;
-            padding: 0 var(--spacing-lg);
-        }
-        
+
         /* ===== COMPONENTE: ACORDEÓN ===== */
         .accordion {
             border-radius: var(--border-radius-md);
             overflow: hidden;
         }
-        
+
         .accordion-item {
             background: #f8f9fa;
             margin-bottom: var(--spacing-xs);
@@ -243,7 +431,7 @@
             overflow: hidden;
             transition: all var(--transition-normal);
         }
-        
+
         .accordion-header {
             padding: var(--spacing-lg);
             cursor: pointer;
@@ -252,11 +440,11 @@
             gap: var(--spacing-md);
             transition: background-color var(--transition-fast);
         }
-        
+
         .accordion-header:hover {
             background: rgba(19, 19, 19, 0.05);
         }
-        
+
         .accordion-toggle {
             background: none;
             border: none;
@@ -270,65 +458,39 @@
             width: 20px;
             height: 20px;
         }
-        
+
         .accordion-toggle::before {
             content: '▶';
             transition: transform var(--transition-normal);
         }
-        
+
         .accordion-item.expanded .accordion-toggle::before {
             transform: rotate(90deg);
         }
-        
+
         .accordion-title {
             font-size: var(--font-size-md);
             font-weight: 600;
             color: #131313;
             flex-grow: 1;
         }
-        
+
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height var(--transition-normal), padding var(--transition-normal);
             padding: 0 var(--spacing-lg);
         }
-        
+
         .accordion-item.expanded .accordion-content {
             max-height: 500px;
             padding: 0 var(--spacing-lg) var(--spacing-lg);
         }
-        
+
         .accordion-text {
             padding-top: var(--spacing-sm);
         }
-        
-        /* ===== RECUADROS DESTACADOS ===== */
-        .quote-box {
-            background: #f8f9fa;
-            border: none;
-            padding: var(--spacing-xl);
-            margin: var(--spacing-xxl) 0;
-            border-radius: 36px;
-            position: relative;
-        }
-        
-        .quote-author {
-            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: var(--font-size-md);
-            font-weight: 600;
-            color: #131313;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .quote-title {
-            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: var(--font-size-md);
-            font-weight: 600;
-            color: #131313;
-            margin-bottom: var(--spacing-md);
-        }
-        
+
         /* ===== ENLACES CON SUBRAYADO GRIS ===== */
         .yellow-link {
             color: #131313;
@@ -340,600 +502,292 @@
             border-radius: 2px;
             font-weight: inherit;
         }
-        
+
         .yellow-link:hover {
             background: linear-gradient(180deg, transparent 50%, var(--gray-highlight) 50%);
             transform: translateY(-1px);
             color: #131313;
         }
-        
+
         .yellow-link:active {
             background: var(--gray-highlight-light);
             transform: translateY(0);
             color: #131313;
         }
-        
+
         .yellow-link:visited {
             color: #131313;
         }
-        
+
         /* ===== ENLACES GENERALES ===== */
         a {
             color: #131313;
             text-decoration: none;
         }
-        
+
         a:visited {
             color: #131313;
         }
-        
+
         a:hover {
             color: #333333;
         }
-        
+
         a:active {
             color: #131313;
         }
-        
-        /* ===== LOGO ===== */
-        .logo {
-            position: absolute;
-            top: var(--spacing-lg);
-            left: 12px;
-            z-index: 500;
-            height: 40px;
-            width: auto;
-            opacity: 0.8;
-            transition: opacity var(--transition-fast);
-        }
-        
-        .logo:hover {
-            opacity: 1;
-        }
-        
-        /* ===== LOGO DEL MENÚ ===== */
-        .menu-logo {
-            position: absolute;
-            top: var(--spacing-lg);
-            left: 12px;
-            z-index: 1001;
-            height: 40px;
-            width: auto;
-            opacity: 0.9;
-            transition: opacity var(--transition-fast);
-        }
-        
-        .menu-logo:hover {
-            opacity: 1;
-        }
-        
-        /* ===== MENÚ HAMBURGUESA ===== */
-        .menu-toggle {
-            position: absolute;
-            top: var(--spacing-lg);
-            right: var(--spacing-lg);
-            z-index: 1001;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--spacing-sm);
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            transition: all var(--transition-normal);
-        }
-        
-        .menu-toggle span {
-            width: 24px;
-            height: 2px;
-            background: #131313;
-            border-radius: 1px;
-            transition: all var(--transition-normal);
-            transform-origin: center;
-        }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(6px) rotate(45deg);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-6px) rotate(-45deg);
-        }
-        
-        /* ===== MENÚ OVERLAY ===== */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #186A7B;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: calc(var(--spacing-xxl) * 2.5 + 24px) var(--spacing-lg) var(--spacing-lg);
-            transform: translateX(100%);
-            transition: transform var(--transition-normal);
-            overflow: hidden;
-        }
-        
-        .menu-overlay.active {
-            transform: translateX(0);
-        }
-        
-        .menu-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(24, 106, 123, 0.3) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .menu-toggle.active span {
-            background: white;
-        }
-        
-        .menu-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .menu-item {
-            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: clamp(40px, 7.5vw, 70px);
-            font-weight: 400;
-            color: white;
-            text-decoration: none;
+
+        /* ===== PULLQUOTES INTEGRADOS EN EL TEXTO ===== */
+        .pullquote {
             display: block;
-            margin-bottom: var(--spacing-sm);
-            transition: all var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-            line-height: 1.25;
-            padding-bottom: calc(1.25em * 0.2);
-            letter-spacing: -0.03em;
-        }
-        
-        .menu-item::after {
-            content: '';
-            position: absolute;
-            bottom: calc(1.25em * 0.15);
-            left: calc(-1 * var(--spacing-lg));
-            right: calc(-1 * var(--spacing-lg));
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.3);
-            transition: all var(--transition-normal);
-        }
-        
-        .menu-item:hover {
-            color: #e5e7eb;
-            transform: translateX(10px);
-        }
-        
-        .menu-item:hover::after {
-            background-color: #e5e7eb;
-        }
-        
-        .menu-item.active {
-            color: var(--gray-highlight);
-        }
-        
-        .menu-item.active::after {
-            background-color: var(--gray-highlight);
-        }
-        
-        .menu-item:visited {
-            color: white;
-        }
-        
-        .menu-item:hover:visited {
-            color: #e5e7eb;
-        }
-        
-        /* Efecto de aparición secuencial */
-        .menu-overlay.active .menu-item:nth-child(1) {
-            animation: slideInMenu 0.6s ease forwards;
-            animation-delay: 0.1s;
-            opacity: 0;
-        }
-        
-        .menu-overlay.active .menu-item:nth-child(2) {
-            animation: slideInMenu 0.6s ease forwards;
-            animation-delay: 0.2s;
-            opacity: 0;
-        }
-        
-        .menu-overlay.active .menu-item:nth-child(3) {
-            animation: slideInMenu 0.6s ease forwards;
-            animation-delay: 0.3s;
-            opacity: 0;
-        }
-        
-        @keyframes slideInMenu {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* ===== ANIMACIONES Y DIAGRAMAS ===== */
-        .diagram-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: var(--spacing-xxl) 0;
-            padding: var(--spacing-xl);
-            background: #f8f9fa;
-            border-radius: var(--border-radius-lg);
-        }
-        
-        .activities-diagram {
             width: 100%;
-            max-width: 500px;
-            height: 300px;
-        }
-        
-        .activity-icon {
-            opacity: 0;
-            animation: fadeInFloat 2s ease-out forwards;
-        }
-        
-        .activity-icon:nth-child(1) { animation-delay: 0.2s; }
-        .activity-icon:nth-child(2) { animation-delay: 0.4s; }
-        .activity-icon:nth-child(3) { animation-delay: 0.6s; }
-        .activity-icon:nth-child(4) { animation-delay: 0.8s; }
-        .activity-icon:nth-child(5) { animation-delay: 1.0s; }
-        .activity-icon:nth-child(6) { animation-delay: 1.2s; }
-        
-        .center-circle {
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        .process-diagram {
-            width: 100%;
-            max-width: 600px;
-            height: 200px;
-        }
-        
-        .process-step {
-            opacity: 0;
-            animation: slideInFromLeft 1.5s ease-out forwards;
-        }
-        
-        .process-step:nth-child(1) { animation-delay: 0.3s; }
-        .process-step:nth-child(2) { animation-delay: 0.6s; }
-        .process-step:nth-child(3) { animation-delay: 0.9s; }
-        .process-step:nth-child(4) { animation-delay: 1.2s; }
-        
-        .connecting-line {
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
-            animation: drawLine 2s ease-out forwards;
-        }
-        
-        .connecting-line:nth-child(2) { animation-delay: 0.6s; }
-        .connecting-line:nth-child(3) { animation-delay: 0.9s; }
-        .connecting-line:nth-child(4) { animation-delay: 1.2s; }
-        
-        .timeline-container {
-            position: relative;
-            margin: var(--spacing-xxl) 0;
-            padding: var(--spacing-xl);
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            border-radius: var(--border-radius-lg);
-        }
-        
-        .timeline-svg {
-            width: 100%;
-            max-width: 700px;
-            height: 180px;
-        }
-        
-        .timeline-path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawTimeline 4s ease-out forwards;
-        }
-        
-        .timeline-point {
-            opacity: 0;
-            animation: fadeInScale 1s ease-out forwards;
-        }
-        
-        .timeline-point:nth-child(2) { animation-delay: 1s; }
-        .timeline-point:nth-child(3) { animation-delay: 2s; }
-        .timeline-point:nth-child(4) { animation-delay: 3s; }
-        
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: var(--spacing-xxl) 0;
-            padding: var(--spacing-xl);
-            background: #f8f9fa;
-            border-radius: var(--border-radius-lg);
-            flex-wrap: wrap;
-            gap: var(--spacing-lg);
-        }
-        
-        .stat-circle {
-            text-align: center;
+            background: transparent;
+            border: none;
+            padding: var(--spacing-lg) 0;
+            margin: var(--spacing-lg) 0;
             position: relative;
         }
-        
-        .stat-svg {
-            width: 120px;
-            height: 120px;
-        }
-        
-        .stat-bg {
-            fill: none;
-            stroke: #e0e0e0;
-            stroke-width: 8;
-        }
-        
-        .stat-progress {
-            fill: none;
-            stroke: #186A7B;
-            stroke-width: 8;
-            stroke-linecap: round;
-            stroke-dasharray: 283;
-            stroke-dashoffset: 283;
-            animation: fillCircle 3s ease-out forwards;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-        
-        .stat-progress.percent-70 { animation-delay: 0.5s; }
-        .stat-progress.percent-22 { animation-delay: 1s; }
-        .stat-progress.percent-16 { animation-delay: 1.5s; }
-        
-        .stat-number {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Sora', sans-serif;
-            font-size: 24px;
+
+        .pullquote-text {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--text-lg);
+            line-height: 1.4;
+            color: #186A7B;
             font-weight: 600;
-            color: #131313;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+            margin: 0;
+            text-align: left;
+            font-style: italic;
         }
-        
-        .stat-number.stat-70 { animation-delay: 2s; }
-        .stat-number.stat-22 { animation-delay: 2.5s; }
-        .stat-number.stat-16 { animation-delay: 3s; }
-        
-        .stat-label {
-            font-family: 'Sora', sans-serif;
-            font-size: 14px;
+
+        .pullquote-small {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--text-base);
+            line-height: 1.4;
+            color: #186A7B;
             font-weight: 500;
-            color: #131313;
-            margin-top: var(--spacing-sm);
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+            margin: 0;
+            text-align: left;
+            font-style: italic;
         }
-        
-        .stat-label.label-70 { animation-delay: 2.2s; }
-        .stat-label.label-22 { animation-delay: 2.7s; }
-        .stat-label.label-16 { animation-delay: 3.2s; }
-        
-        @keyframes fadeInFloat {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .pullquote-highlight .pullquote-text,
+        .pullquote-highlight .pullquote-small {
+            color: #145761;
+            font-weight: 700;
         }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.8;
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-12);
+                text-align: left;
             }
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
+
+            .hero-image {
+                transform: none;
+                order: 2;
             }
-        }
-        
-        @keyframes slideInFromLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
+
+            .hero-content {
+                order: 1;
             }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
+
+            .hero-title {
+                font-size: var(--text-5xl);
             }
-        }
-        
-        @keyframes drawLine {
-            0% {
-                stroke-dashoffset: 100;
+
+            /* Mantener menú visible en tablets */
+            .nav-list {
+                display: none;
+                gap: var(--space-6);
             }
-            100% {
-                stroke-dashoffset: 0;
+
+            .nav-link {
+                font-size: var(--text-sm);
             }
         }
-        
-        @keyframes drawTimeline {
-            0% {
-                stroke-dashoffset: 1000;
-            }
-            100% {
-                stroke-dashoffset: 0;
-            }
-        }
-        
-        @keyframes fadeInScale {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        @keyframes fillCircle {
-            0% {
-                stroke-dashoffset: 283;
-            }
-            100% {
-                stroke-dashoffset: calc(283 - (283 * var(--percentage) / 100));
-            }
-        }
-        
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        
-        /* Responsivo para diagramas */
+
         @media (max-width: 768px) {
-            .diagram-container {
-                padding: var(--spacing-lg);
-                margin: var(--spacing-xl) 0;
+            .hero {
+                padding: var(--space-16) var(--space-4) var(--space-20);
+                min-height: auto;
             }
-            
-            .activities-diagram {
-                height: 250px;
+
+            .hero-title {
+                font-size: var(--text-4xl);
+                line-height: 1.1;
             }
-            
-            .process-diagram {
-                height: 150px;
+
+            .hero-subtitle {
+                font-size: var(--text-lg);
             }
-            
-            .timeline-svg {
-                height: 120px;
-            }
-            
-            .stats-container {
+
+            .article-meta {
                 flex-direction: column;
-                gap: var(--spacing-xl);
+                align-items: flex-start;
+                gap: var(--space-4);
             }
-            
-            .stat-svg {
-                width: 100px;
-                height: 100px;
+
+            .social-share {
+                align-self: flex-start;
             }
-            
-            .stat-number {
-                font-size: 20px;
-            }
-        }
+
             .article-container {
                 padding: var(--spacing-md) 0;
             }
-            
+
             .image-container {
                 padding: 0 var(--spacing-md);
                 margin-bottom: var(--spacing-md);
             }
-            
+
             .article-content {
                 padding: 0 var(--spacing-md);
             }
-            
-            .article-header {
-                padding: calc(var(--spacing-xxl) * 2) var(--spacing-md) var(--spacing-md);
-                margin: 0 0 var(--spacing-lg) 0;
-            }
-            
-            .menu-overlay {
-                padding: calc(var(--spacing-xxl) * 2 + 24px) var(--spacing-md) var(--spacing-md);
-            }
-            
+
             .article-image {
                 height: 300px;
             }
-            
-            h1 {
-                font-size: clamp(35px, 10vw, 51px);
+
+            /* Mobile Navigation */
+            .nav-container {
+                justify-content: space-between;
+                height: 60px;
             }
-            
-            .subtitle-verge {
-                font-size: clamp(16px, 4vw, 20px);
-                margin-top: var(--spacing-md);
+
+            .nav-toggle {
+                display: flex;
             }
-            
-            .reading-time {
-                font-size: 9px;
-                margin-top: var(--spacing-xs);
+
+            .nav-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--background-light);
+                flex-direction: column;
+                padding: var(--space-4);
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--border-color);
             }
-            
-            .quote-box {
-                padding: var(--spacing-lg);
-                margin: var(--spacing-xl) 0;
+
+            .nav-list.nav-menu-open {
+                display: flex;
             }
-            
-            .quote-box::before {
-                font-size: 48px;
-                top: -5px;
-                left: var(--spacing-md);
+
+            .nav-item {
+                margin: 0;
+            }
+
+            .nav-link {
+                padding: var(--space-3) 0;
+                font-size: var(--text-base);
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: var(--text-3xl);
+            }
+
+            .hero-subtitle {
+                font-size: var(--text-base);
+            }
+
+            .nav-container {
+                height: 50px;
+                padding: 0 var(--space-3);
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .nav-list {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <img src="https://i.imgur.com/FakCT9f.png" alt="Logo" class="logo">
-
-    <!-- Menú Hamburguesa -->
-    <button class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <!-- Menú Overlay -->
-    <div class="menu-overlay" id="menuOverlay">
-        <!-- Logo del menú -->
-        <img src="https://i.imgur.com/nxFdRHH.png" alt="Logo" class="menu-logo">
-        
-        <nav class="menu-content">
-            <a href="#" class="menu-item active" data-section="cecap">CECAP</a>
-            <a href="#" class="menu-item" data-section="pnec">PNEC</a>
-            <a href="#" class="menu-item" data-section="pas">PAS</a>
+    <!-- Header Moderno -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="#" class="logo">
+                        <img src="https://i.imgur.com/FakCT9f.png" alt="Dirección Nacional de Educación" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <ul class="nav-list" id="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">CECAP</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">PROGRAMAS</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">PALABRAS</a></li>
+                </ul>
+                <!-- Menú hamburguesa -->
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
-    </div>
+    </header>
+
+    <!-- Hero Section Moderno -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="category-tag">EDUCACIÓN</div>
+                <h1 class="hero-title">Los CECAP, un espacio para volver a creer en las oportunidades</h1>
+                <p class="hero-subtitle">Miles de adolescentes uruguayos han encontrado en los Centros Educativos de Capacitación, Arte y Producción una nueva forma de aprender, crecer y construir su futuro.</p>
+                
+                <div class="article-meta">
+                    <div class="author-info">
+                        <div class="author-details">
+                            <span class="author-name">el Equipo Editorial</span>
+                            <span class="publish-date">4 de septiembre, 2025</span>
+                        </div>
+                    </div>
+                    <div class="social-share">
+                        <a href="https://mec.gub.uy/cecap" target="_blank" class="social-icon" aria-label="Sitio web oficial">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/educacion_mec/" target="_blank" class="social-icon" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.imgur.com/HM7Uobh.jpeg" alt="Estudiantes en CECAP" class="hero-img">
+            </div>
+        </div>
+    </section>
 
     <div class="article-container">
-        <!-- Header del artículo -->
-        <header class="article-header">
-            <h1>Los CECAP, un espacio para volver a creer en las oportunidades</h1>
-        </header>
-
-        <!-- Imagen del artículo -->
-        <div class="image-container">
-            <img src="https://i.imgur.com/HM7Uobh.jpeg" alt="Estudiantes en CECAP" class="article-image">
-        </div>
-
         <!-- Contenido del artículo -->
         <div class="article-content">
             <p class="body-text" style="margin-bottom: 20px;">
@@ -944,6 +798,11 @@
                 Los CECAP son una propuesta del Ministerio de Educación y Cultura nacida a comienzos de los 2000, con el objetivo de responder a algunas de las necesidades de los jóvenes entre 14 y 20 años que no han completado la Educación Media Básica y tampoco están trabajando.
             </p>
             
+            <!-- Imagen temprana para dar balance visual -->
+            <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                <img src="https://i.imgur.com/HM7Uobh.jpeg" alt="Ambiente acogedor en CECAP" class="article-image">
+            </div>
+
             <!-- Acordeón con la pregunta -->
             <div class="accordion" style="margin-bottom: 20px;">
                 <div class="accordion-item">
@@ -967,84 +826,30 @@
                     Con 22 centros en funcionamiento distribuidos en 16 departamentos de todo el país, los CECAP están dirigidos a jóvenes de entre 14 y 20 años que no están vinculados al sistema educativo formal ni al mundo del trabajo. Cada semestre, alrededor de unos 2.500 adolescentes forman parte del programa, de distintas maneras. De ellos, alrededor de 1.800 tienen una presencia estable y este número crece año a año.
                 </p>
                 
+                <div class="pullquote pullquote-1">
+                    <p class="pullquote-small">La propuesta educativa combina talleres prácticos y artísticos, espacios de formación personal y social, recreación, deporte y orientación laboral.</p>
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     La propuesta educativa combina <strong>talleres prácticos y artísticos, espacios de formación personal y social, recreación, deporte y orientación laboral</strong>. Pero su diferencial tiene que ver con una impronta que apuesta al acompañamiento afectivo, a la presencia y al vínculo humano.
                 </p>
-                
-                <!-- Diagrama de actividades -->
-                <div class="diagram-container" style="margin: var(--spacing-xl) 0;">
-                    <svg class="activities-diagram" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Círculo central -->
-                        <circle class="center-circle" cx="250" cy="150" r="45" fill="#186A7B" opacity="0.1" stroke="#186A7B" stroke-width="2"/>
-                        <text x="250" y="150" text-anchor="middle" dy="5" font-family="Sora" font-size="14" font-weight="600" fill="#131313">CECAP</text>
-                        
-                        <!-- Música -->
-                        <g class="activity-icon">
-                            <circle cx="150" cy="80" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <path d="M140 75 h8 v-8 c0-2 2-2 4 0 v16 c0 2-2 4-4 4s-4-2-4-4v-8z M152 67 v8" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="150" y="110" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Música</text>
-                        </g>
-                        
-                        <!-- Teatro -->
-                        <g class="activity-icon">
-                            <circle cx="350" cy="80" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <path d="M335 75 c0-8 8-8 8 0 v10 c0 8-8 8-8 0z M357 75 c0-8 8-8 8 0 v10 c0 8-8 8-8 0z" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="350" y="110" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Teatro</text>
-                        </g>
-                        
-                        <!-- Gastronomía -->
-                        <g class="activity-icon">
-                            <circle cx="420" cy="150" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <rect x="410" y="145" width="20" height="8" rx="2" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <line x1="415" y1="140" x2="415" y2="145" stroke="#186A7B" stroke-width="2"/>
-                            <line x1="420" y1="138" x2="420" y2="145" stroke="#186A7B" stroke-width="2"/>
-                            <line x1="425" y1="140" x2="425" y2="145" stroke="#186A7B" stroke-width="2"/>
-                            <text x="420" y="180" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Gastronomía</text>
-                        </g>
-                        
-                        <!-- Deportes -->
-                        <g class="activity-icon">
-                            <circle cx="350" cy="220" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <circle cx="350" cy="220" r="8" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <path d="M342 215 l16 0 M342 225 l16 0 M345 212 l0 16 M355 212 l0 16" stroke="#186A7B" stroke-width="1"/>
-                            <text x="350" y="250" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Deportes</text>
-                        </g>
-                        
-                        <!-- Arte -->
-                        <g class="activity-icon">
-                            <circle cx="150" cy="220" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <rect x="140" y="215" width="20" height="15" rx="2" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <circle cx="145" cy="222" r="2" fill="#186A7B"/>
-                            <circle cx="155" cy="225" r="2" fill="#186A7B"/>
-                            <text x="150" y="250" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Arte</text>
-                        </g>
-                        
-                        <!-- Formación Social -->
-                        <g class="activity-icon">
-                            <circle cx="80" cy="150" r="25" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <circle cx="75" cy="145" r="4" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <circle cx="85" cy="145" r="4" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <path d="M70 155 c0-3 3-5 5-5 s5 2 5 5 M80 155 c0-3 3-5 5-5 s5 2 5 5" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="80" y="180" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Formación</text>
-                        </g>
-                        
-                        <!-- Líneas conectoras -->
-                        <line x1="205" y1="120" x2="225" y2="135" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                        <line x1="295" y1="120" x2="275" y2="135" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                        <line x1="375" y1="150" x2="295" y2="150" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                        <line x1="295" y1="180" x2="275" y2="165" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                        <line x1="205" y1="180" x2="225" y2="165" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                        <line x1="125" y1="150" x2="205" y2="150" stroke="#186A7B" stroke-width="1" opacity="0.3"/>
-                    </svg>
-                </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     Veinte centros cuentan, además, con convenios con UTU y Secundaria, lo que permite a los adolescentes volver a cursar simultáneamente, su educación media básica, de una forma diferente. "Algunos entran con sexto de escuela y, dos años después, con esfuerzo y constancia mediante, salen con tercero de liceo aprobado. Eso les permite estar en la puerta del bachillerato", explica Alende.
                 </p>
                 
+                <div class="pullquote pullquote-2 pullquote-highlight">
+                    <p class="pullquote-text">El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar</p>
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     Pero más allá de los contenidos que se enseñan en cada taller, lo que distingue a los CECAP tiene que ver con la mirada sobre el otro: "El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar", resume <strong>Stefanie</strong>, coordinadora del centro de Fray Bentos. "Se toma lo que ellos saben, lo que les interesa, sus posibilidades. Y desde ahí se construye", agrega.
                 </p>
+                
+                <!-- Imagen de los enfoques pedagógicos -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/nveeiMU.jpeg" alt="Enfoque pedagógico centrado en los jóvenes" class="article-image">
+                </div>
             </section>
 
             <!-- Tercera sección -->
@@ -1054,57 +859,6 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     La pedagogía de los CECAP no empieza en el aula. Empieza en la puerta. "Si vos venís a mi casa y yo te espero en la puerta, porque estoy esperando que vengas y quiero darte la bienvenida desde ese momento, eso cambia todo", dice Isabel Alende. Y es así como reciben los referentes a cada joven que llega a los CECAP.
                 </p>
-                
-                <!-- Diagrama del proceso de hospitalidad pedagógica -->
-                <div class="diagram-container" style="margin: var(--spacing-xl) 0;">
-                    <svg class="process-diagram" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Paso 1: Esperar -->
-                        <g class="process-step">
-                            <circle cx="80" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <path d="M70 90 h20 v20 h-20z M80 85 v-10 M75 85 h10" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="80" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Esperar</text>
-                        </g>
-                        
-                        <!-- Flecha 1 -->
-                        <line class="connecting-line" x1="110" y1="100" x2="150" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        
-                        <!-- Paso 2: Recibir -->
-                        <g class="process-step">
-                            <circle cx="180" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <path d="M170 95 h20 v10 h-20z M175 90 l5 5 l5-5" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="180" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Recibir</text>
-                        </g>
-                        
-                        <!-- Flecha 2 -->
-                        <line class="connecting-line" x1="210" y1="100" x2="250" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        
-                        <!-- Paso 3: Preguntar -->
-                        <g class="process-step">
-                            <circle cx="280" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <path d="M270 90 q5-5 10 0 q5 5 0 10 l-5 5 M275 110 v2" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="280" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Preguntar</text>
-                        </g>
-                        
-                        <!-- Flecha 3 -->
-                        <line class="connecting-line" x1="310" y1="100" x2="350" y2="100" stroke="#186A7B" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        
-                        <!-- Paso 4: Acompañar -->
-                        <g class="process-step">
-                            <circle cx="380" cy="100" r="30" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <circle cx="375" cy="95" r="3" fill="#186A7B"/>
-                            <circle cx="385" cy="95" r="3" fill="#186A7B"/>
-                            <path d="M370 105 c0-3 3-5 5-5 s5 2 5 5 M380 105 c0-3 3-5 5-5 s5 2 5 5" stroke="#186A7B" stroke-width="2" fill="none"/>
-                            <text x="380" y="150" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Acompañar</text>
-                        </g>
-                        
-                        <!-- Definición del marcador de flecha -->
-                        <defs>
-                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                <polygon points="0 0, 10 3.5, 0 7" fill="#186A7B"/>
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
                 
                 <!-- Acordeón sobre hospitalidad pedagógica -->
                 <div class="accordion" style="margin: var(--spacing-xl) 0;">
@@ -1119,6 +873,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Imagen de hospitalidad pedagógica -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/efir251.jpeg" alt="Hospitalidad pedagógica en acción" class="article-image">
                 </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
@@ -1141,11 +900,6 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     Para muchas y muchos jóvenes, CECAP es un lugar donde alguien les pregunta qué quieren, qué les gusta, qué saben hacer. Y aunque a veces la respuesta no es sencilla, lo importante es el camino. Por eso, quienes llegan sin tener claro qué es eso que saben o que les interesa aprender, no están perdidos: tienen la oportunidad de descubrirlo.
                 </p>
-                
-                <!-- Imagen de actividades grupales -->
-                <div class="image-container" style="margin: var(--spacing-xl) 0;">
-                    <img src="https://i.imgur.com/nveeiMU.jpeg" alt="Jóvenes desarrollando sus talentos en CECAP" class="article-image">
-                </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     "Uno de los desafíos más importantes que tenemos es encontrar la motivación en estos jóvenes, teniendo en cuenta que muchas veces enfrentan obstáculos grandes, dificultades emocionales, falta de apoyo en sus núcleos familiares, problemas de conducta o complejidades para establecer vínculos", explica <strong>Juan Pablo Leguizamo</strong>, educador referente en el CECAP de Fray Bentos, donde trabaja desde hace ocho años.
@@ -1201,14 +955,14 @@
                     El equipo de cada CECAP está compuesto por coordinadores, educadores referentes, talleristas y técnicos de distintas áreas. Ellos son quienes sostienen el día a día de cada centro, en cada rincón de nuestro país. Con escucha, compromiso y paciencia, construyen el presente y el futuro de los gurises que llegan para buscar un nuevo camino.
                 </p>
                 
-                <!-- Imagen de equipos educativos -->
-                <div class="image-container" style="margin: var(--spacing-xl) 0;">
-                    <img src="https://i.imgur.com/nlknNgu.jpeg" alt="Equipos educativos de CECAP" class="article-image">
-                </div>
-                
                 <p class="body-text" style="margin-bottom: 20px;">
                     "Todos los que participan de los CECAP aportan contención, confianza, afecto. En los centros se construyen vínculos cercanos y respetuosos que permiten que los gurises se animen a aprender, a expresarse, a construir su camino", dice Stefanie.
                 </p>
+                
+                <!-- Imagen de equipos educativos distribuida mejor -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/sjtLw1O.jpeg" alt="Trabajo colaborativo en los equipos de CECAP" class="article-image">
+                </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     Para Juan Pablo, el trabajo como educador referente implica "tener la empatía necesaria para buscar y encontrar la motivación de los jóvenes". Reconoce que muchos llegan con baja autoestima, dificultades para vincularse o falta de confianza por parte de sus redes. Por eso, cada avance es una conquista y no hay avances pequeños, son todos significativos: "lo que más me gusta es ver su crecimiento y ver cómo se abren en el proceso", asegura.
@@ -1223,48 +977,6 @@
                     <strong>José Suárez</strong> es estudiante del CECAP de Fray Bentos. Llegó por recomendación de Richard, el adscripto del liceo al que iba antes. Hasta entonces, José no sabía que existía esta propuesta. Se acercó sin saber qué esperar, pero la bienvenida fue muy buena: "Me pareció un lugar muy lindo desde el principio y, desde las primeras semanas, trabajé con los talleristas y con mis compañeros", cuenta.
                 </p>
                 
-                <!-- Timeline de José -->
-                <div class="timeline-container">
-                    <svg class="timeline-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Línea principal del timeline -->
-                        <path class="timeline-path" d="M50 90 Q200 90 250 90 T450 90 T650 90" stroke="#186A7B" stroke-width="3" fill="none"/>
-                        
-                        <!-- Punto 1: UTU -->
-                        <g class="timeline-point">
-                            <circle cx="150" cy="90" r="12" fill="#e0e0e0" stroke="#131313" stroke-width="2"/>
-                            <text x="150" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">UTU</text>
-                            <text x="150" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Sin motivación</text>
-                        </g>
-                        
-                        <!-- Punto 2: Recomendación -->
-                        <g class="timeline-point">
-                            <circle cx="300" cy="90" r="12" fill="#f8f9fa" stroke="#186A7B" stroke-width="2"/>
-                            <text x="300" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Recomendación</text>
-                            <text x="300" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Richard (adscripto)</text>
-                        </g>
-                        
-                        <!-- Punto 3: CECAP -->
-                        <g class="timeline-point">
-                            <circle cx="450" cy="90" r="12" fill="#186A7B" stroke="#131313" stroke-width="2"/>
-                            <text x="450" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">CECAP</text>
-                            <text x="450" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">"Me cambió una banda"</text>
-                        </g>
-                        
-                        <!-- Punto 4: Futuro -->
-                        <g class="timeline-point">
-                            <circle cx="600" cy="90" r="12" fill="#131313" stroke="#186A7B" stroke-width="2"/>
-                            <text x="600" y="60" text-anchor="middle" font-family="Sora" font-size="12" font-weight="600" fill="#131313">Futuro</text>
-                            <text x="600" y="45" text-anchor="middle" font-family="Sora" font-size="10" fill="#666">Electromecánica</text>
-                        </g>
-                        
-                        <!-- Actividades actuales -->
-                        <text x="450" y="120" text-anchor="middle" font-family="Sora" font-size="10" fill="#131313">Gastronomía • Música • Deportes</text>
-                        
-                        <!-- Frase destacada -->
-                        <text x="350" y="150" text-anchor="middle" font-family="STIX Two Text" font-size="14" font-style="italic" fill="#131313">"Tengo proyectos a futuro"</text>
-                    </svg>
-                </div>
-                
                 <p class="body-text" style="margin-bottom: 20px;">
                     Actualmente, José hace varios talleres, pero los que más disfruta son Gastronomía, Ensamble Musical, Espacio Grupal y Recreación y Deporte. Sin embargo, lo que él mismo destaca es que se siente muy querido y acompañado: "Tengo que agradecerles a todos porque desde el primer día me recibieron con los brazos abiertos y eso no tiene precio", dice.
                 </p>
@@ -1272,6 +984,11 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     En ese sentido, José destaca el compañerismo que se vive en el CECAP al que asiste. "En los grupos siempre intentamos ser compañeros unos con otros y ser unidos. Eso es algo que no encontré en otros lugares y es algo a destacar", asegura. En este tiempo, José se hizo amigos, que son "casi hermanos", según cuenta.
                 </p>
+                
+                <!-- Imagen de estudiantes en acción -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/nlknNgu.jpeg" alt="Estudiantes de CECAP desarrollando proyectos" class="article-image">
+                </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     "El CECAP me cambió una banda", dice José. Él mismo recuerda que, antes, cuando iba a la UTU, muchas veces lo hacía sin ganas o con falta de motivación. Eso cambió cuando encontró su lugar en el CECAP: "Tengo proyectos a futuro. Quiero terminar el CECAP e irme a estudiar Electromecánica a Paysandú", concluye.
@@ -1285,36 +1002,6 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     La propuesta educativa de CECAP se organiza en torno a ejes anuales y comunes a todos los centros, que poco a poco, se van actualizando. Actualmente, hay encuestas de clima, encuentros de delegados, muestras de cierre, espectáculos en el INJU y producciones audiovisuales hechas por los estudiantes.
                 </p>
-                
-                <!-- Estadísticas animadas -->
-                <div class="stats-container">
-                    <div class="stat-circle">
-                        <svg class="stat-svg" viewBox="0 0 120 120">
-                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
-                            <circle class="stat-progress percent-70" cx="60" cy="60" r="45" style="--percentage: 70"/>
-                            <text class="stat-number stat-70" x="60" y="65" text-anchor="middle">70%</text>
-                        </svg>
-                        <div class="stat-label label-70">Inserción laboral<br>o educativa</div>
-                    </div>
-                    
-                    <div class="stat-circle">
-                        <svg class="stat-svg" viewBox="0 0 120 120">
-                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
-                            <circle class="stat-progress percent-22" cx="60" cy="60" r="45" style="--percentage: 22"/>
-                            <text class="stat-number stat-22" x="60" y="65" text-anchor="middle">22</text>
-                        </svg>
-                        <div class="stat-label label-22">Centros en<br>funcionamiento</div>
-                    </div>
-                    
-                    <div class="stat-circle">
-                        <svg class="stat-svg" viewBox="0 0 120 120">
-                            <circle class="stat-bg" cx="60" cy="60" r="45"/>
-                            <circle class="stat-progress percent-16" cx="60" cy="60" r="45" style="--percentage: 80"/>
-                            <text class="stat-number stat-16" x="60" y="65" text-anchor="middle">16</text>
-                        </svg>
-                        <div class="stat-label label-16">Departamentos<br>del país</div>
-                    </div>
-                </div>
                 
                 <!-- Acordeón sobre el impacto -->
                 <div class="accordion" style="margin: var(--spacing-xl) 0;">
@@ -1331,6 +1018,10 @@
                     </div>
                 </div>
                 
+                <div class="pullquote pullquote-5 pullquote-highlight">
+                    <p class="pullquote-text">Cada joven tiene una familia detrás y lucha por algo que no es visible. Por eso, cuando se sienten acompañados, vuelven a florecer</p>
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     Para la coordinadora, lo más importante es confiar en los procesos, mirar más allá y valorar los pequeños logros cotidianos. "Cada joven tiene una familia detrás y lucha por algo que no es visible. Por eso, cuando se sienten acompañados, vuelven a florecer", dice. "Aprendo de los gurises todo el tiempo, de su creatividad, de su fuerza, de su resiliencia. Estar en CECAP me reafirma cada día que la educación puede ser un acto profundamente humano, reparador y esperanzador", afirma.
                 </p>
@@ -1338,6 +1029,10 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     Ver crecer a los gurises, encontrarlos después en otros lugares, en la calle o en algún trabajo, es algo que a Stefanie le ha sucedido y que agradece. "Recuerdo casos puntuales y complejos, de adolescentes que llegaron al centro sin esperanza de socializar o de pertenecer a un grupo y, con el tiempo, encuentran su lugar", dice. Para eso, hacerles sentir confianza y mostrarles que pueden creer en ellos mismos es la clave.
                 </p>
+                
+                <div class="pullquote pullquote-6">
+                    <p class="pullquote-text">Un lugar donde cada joven pueda sentirse valorado, acompañado y motivado para construir su proyecto de vida</p>
+                </div>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     A nivel de equipo, Stefanie destaca que el compromiso es fundamental. Tener un objetivo y trabajar de forma conjunta y coordinada para lograrlo es el camino que encuentran los equipos de CECAP. "Eso es mucho y deja mucho", asegura. "Me gustaría que la sociedad conociera qué hace este programa, porque es una oportunidad para gurises que, por distintos motivos, tuvieron que dejar los estudios", dice.
@@ -1368,14 +1063,19 @@
                     Stefanie, por su parte, también tiene expectativas de cara a los próximos años: "Me imagino un CECAP con mejor infraestructura, con más comodidades, con más proyectos comunitarios", dice. Y agrega: "Un lugar donde cada joven pueda sentirse valorado, acompañado y motivado para construir su proyecto de vida".
                 </p>
                 
+                <!-- Imagen de futuro y proyectos -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/WNUglCp.jpeg" alt="Proyectos y futuro en CECAP" class="article-image">
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     Para Juan Pablo, mientras tanto, también es importante que el programa se conozca más: "Me parece importante que la sociedad conozca los beneficios que tiene este programa, que ayuda a esos gurises que, por distintos motivos, tuvieron que dejar los estudios y para los que no hay tantas propuestas", asegura.
                 </p>
             </section>
 
-            <!-- Décima sección -->
+            <!-- Décima sección: Una apuesta educativa que abraza -->
             <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
-                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 24px; font-weight: 400; color: #131313; margin-bottom: var(--spacing-lg);">Una apuesta educativa que abraza</h2>
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Una apuesta educativa que abraza</h2>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     En una sociedad que muchas veces expulsa o segrega —de forma explícita o silenciosa— a jóvenes, estudiantes o trabajadores, los CECAP van contracorriente: reciben, abrazan, sostienen. Y todo eso, a través de personas comprometidas con una propuesta educativa distinta, basada en el aprender haciendo. Allí donde otros ven fracaso o desinterés, CECAP ve potencial, deseo, posibilidad. Y por eso, cada vínculo importa. Cada encuentro se valora. Cada historia es única y necesaria.
@@ -1393,6 +1093,10 @@
                     Los educadores y referentes no son solo formadores: son compañeros de ruta, un oído que escucha y un hombro que sostiene. Acompañan desde la empatía, respetan los tiempos, celebran cada avance. Y en ese vínculo humano —genuino, paciente, comprometido— se funda la transformación.
                 </p>
                 
+                <div class="pullquote pullquote-7 pullquote-highlight">
+                    <p class="pullquote-text">Una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido</p>
+                </div>
+                
                 <p class="body-text" style="margin-bottom: 20px;">
                     "Una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido", dice Stefanie. Y esa frase resume el corazón del programa: poner a los jóvenes en el centro, no como destinatarios de una oferta, sino como protagonistas de sus propios caminos.
                 </p>
@@ -1400,6 +1104,11 @@
                 <p class="body-text" style="margin-bottom: 20px;">
                     Porque todos tienen algo para dar, algo para aprender, algo para construir. Y porque, incluso en contextos difíciles, la educación puede ser un acto profundamente humano, reparador y esperanzador.
                 </p>
+            </section>
+
+            <!-- Sección: Un espacio donde volver a creer -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">Un espacio donde volver a creer</h2>
                 
                 <p class="body-text" style="margin-bottom: 20px;">
                     CECAP no es solo un centro. Es una oportunidad real. Es un espacio donde volver a creer en uno mismo, en los demás y en el futuro.
@@ -1414,36 +1123,52 @@
                 </p>
             </section>
 
-            <!-- Recuadros de Gabriel Quirici -->
-            <div class="quote-box">
-                <div class="quote-author">Gabriel Quirici</div>
-                <p class="body-text" style="margin-bottom: 0;">
-                    "Los CECAP constituyen una forma de abordar la vinculación de los jóvenes a la educación a través del trabajo, el arte y otras propuestas, en contextos vulnerables, con un enfoque de cercanía muy valioso. Esto permite que los equipos alcancen a un gran número de jóvenes y familias, a través del trabajo de coordinadores, educadores, talleristas y referentes, para revincularlos en las semanas pasadas.
+            <!-- Sección: Análisis de Gabriel Quirici -->
+            <section style="margin-top: var(--spacing-xxl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-light);">
+                <h2 style="font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 21px; font-weight: 600; color: #131313; margin-bottom: var(--spacing-lg);">El lugar de los CECAPS para la política Educativa</h2>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
+                    <strong>Gabriel Quirici</strong> analiza que "Los CECAP constituyen una forma de abordar la vinculación de los jóvenes a la educación a través del trabajo, el arte y otras propuestas, en contextos vulnerables, con un enfoque de cercanía muy valioso. Esto permite que los equipos alcancen a un gran número de jóvenes y familias, a través del trabajo de coordinadores, educadores, talleristas y referentes, para revincularlos en las semanas pasadas.
                 </p>
-                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     La propuesta, además, tiene un enorme potencial para llevar a cabo una estrategia de alcance nacional, a través del ministerio de Educación y Cultura, que proporciona recursos humanos, propuestas pedagógicas y materiales y que interactúa con el aporte de actores locales, especialmente intendencias, pero también colectivos sociales. Esto es una clara demostración de las posibles sinergias positivas entre lo nacional, lo municipal y la descentralización como política de inclusión, democrática y educativa".
                 </p>
-            </div>
-
-            <div class="quote-box">
-                <div class="quote-author">Gabriel Quirici</div>
-                <div class="quote-title">El lugar de los CECAPS para la política Educativa</div>
-                <p class="body-text" style="margin-bottom: 0;">
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     La asistencia, la continuidad y la culminación de los cursos siguen siendo un desafío para garantizar el acceso universal a la educación de nuestros adolescentes. En este contexto, cobran mayor relevancia los CECAP, con la combinación de propuestas diversas, educación no formal y un fuerte enfoque de cercanía pedagógica. Hoy, estos centros promueven una experiencia necesaria y valiosa, que merece ser observada, respaldada y articulada con mayor énfasis dentro de la trama institucional de la educación para nuestros jóvenes.
                 </p>
-                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                
+                <div class="pullquote pullquote-8">
+                    <p class="pullquote-small">Los CECAP representan una propuesta original y creativa de abordaje territorial</p>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     La propuesta posee un enorme potencial para ser fortalecida y para convertirse en un factor multiplicador de buenas prácticas y modelos de organización educativa dirigidos a estudiantes en situación de alta vulnerabilidad.
                 </p>
-                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     Se trata, además, de una estrategia virtuosa de alcance nacional, impulsada por el Ministerio de Educación y Cultura, que aporta materiales, recursos humanos y propuestas pedagógicas, y que se articula con diversos actores locales —principalmente las intendencias, pero también colectivos sociales y sindicales—, responsables de proveer los espacios físicos y organizar la distribución de los recursos. Es un ejemplo claro de las sinergias posibles entre lo nacional y lo municipal, y de cómo la descentralización puede operar como una política inclusiva, democrática y educativa.
                 </p>
-                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     Los CECAP trabajan con jóvenes en contextos de alta vulnerabilidad a través del concepto de aprender haciendo, con un enfoque de proximidad que resulta especialmente valioso. Esta característica, entre otras, ha permitido que los equipos de coordinación, educadores, talleristas y referentes docentes de distintas localidades desplieguen una notable capacidad para tejer redes y conectar con un gran número de jóvenes y familias después del reciente lanzamiento de la campaña de revinculación, impulsada por el MIDES y la ANEP.
                 </p>
-                <p class="body-text" style="margin-bottom: 0; margin-top: 16px;">
+                
+                <div class="pullquote pullquote-9">
+                    <p class="pullquote-small">La propuesta posee un enorme potencial para ser fortalecida y para convertirse en un factor multiplicador de buenas prácticas</p>
+                </div>
+                
+                <p class="body-text" style="margin-bottom: 20px;">
                     En definitiva, los CECAP representan una propuesta original y creativa de abordaje territorial, con una cercanía educativa que les permite integrarse activamente a sus comunidades y sostener, en el tiempo, oportunidades concretas para acceder a una educación de mayor calidad.
                 </p>
-            </div>
+                
+                <!-- Imagen de cierre - Gabriel Quirici -->
+                <div class="image-container" style="margin: var(--spacing-xl) 0;">
+                    <img src="https://i.imgur.com/HN1PCfR.jpeg" alt="Gabriel Quirici - Análisis de política educativa" class="article-image">
+                </div>
+            </section>
+
         </div>
     </div>
 
@@ -1456,11 +1181,13 @@
                 
                 // Cerrar todos los otros acordeones en el mismo contenedor
                 const accordion = item.closest('.accordion');
-                accordion.querySelectorAll('.accordion-item.expanded').forEach(openItem => {
-                    if (openItem !== item) {
-                        openItem.classList.remove('expanded');
-                    }
-                });
+                if (accordion) {
+                    accordion.querySelectorAll('.accordion-item.expanded').forEach(openItem => {
+                        if (openItem !== item) {
+                            openItem.classList.remove('expanded');
+                        }
+                    });
+                }
                 
                 // Alternar el item actual
                 if (isExpanded) {
@@ -1537,8 +1264,20 @@
                 closeMenu();
             }
         });
-        
-        console.log('📖 Artículo CECAP cargado correctamente');
+
+        // ===== INICIALIZACIÓN =====
+        function init() {
+            console.log('🚀 Inicializando CECAP Website...');
+            console.log('✅ CECAP Website cargado correctamente!');
+        }
+
+        // ===== EVENT LISTENERS =====
+        // Ejecutar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
