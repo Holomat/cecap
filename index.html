@@ -20,13 +20,24 @@
             font-size: 19px;
             line-height: 27px;
             color: #604E6C;
-            background: #ffffff;
+            background: #ffffff url('https://i.imgur.com/oRMFOWc.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+        }
+
+        /* Mobile background */
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://i.imgur.com/gkbeZrq.png');
+            }
         }
 
         /* Header glassmorphism estilo The Verge */
@@ -53,7 +64,6 @@
             padding: 0 20px;
         }
 
-        /* Logo/Título estilo The Verge */
         .header-title {
             font-family: 'Inter', sans-serif;
             font-size: 18px;
@@ -63,7 +73,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* Botón hamburguesa estilo The Verge */
         .hamburger-btn {
             background: none;
             border: none;
@@ -101,7 +110,7 @@
             transform: rotate(-45deg) translate(4px, -4px);
         }
 
-        /* MENÚ OVERLAY - VERSIÓN SIMPLE */
+        /* MENÚ OVERLAY */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -117,7 +126,6 @@
             display: block;
         }
 
-        /* Título - sin hover, siempre en celeste */
         .menu-title {
             font-family: 'Sora', sans-serif;
             font-size: 5rem;
@@ -130,7 +138,6 @@
             cursor: default;
         }
 
-        /* Elementos principales del menú */
         .menu-items {
             position: absolute;
             top: 36px;
@@ -157,7 +164,6 @@
             color: white;
         }
 
-        /* Botón cerrar - X en mayúscula y Sora Light */
         .close-btn {
             position: absolute;
             top: 36px;
@@ -179,7 +185,6 @@
             color: white;
         }
 
-        /* Logo más grande */
         .menu-logo {
             position: absolute;
             bottom: 36px;
@@ -192,7 +197,6 @@
             opacity: 0.9;
         }
 
-        /* Textos responsive para CECAP */
         .desktop-text {
             display: block;
         }
@@ -201,14 +205,101 @@
             display: none;
         }
 
+        /* ACORDEONES - ESTILOS CORREGIDOS */
+        .accordion-container {
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 32px 0;
+        }
+
+        .accordion-item {
+            background: #f8f9fa;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background-color 0.15s;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(96, 78, 108, 0.05);
+        }
+
+        .accordion-toggle {
+            background: none;
+            border: none;
+            color: #604E6C;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            transform: rotate(0deg);
+            pointer-events: none;
+        }
+
+        .accordion-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: #604E6C;
+            flex-grow: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 24px;
+        }
+
+        .accordion-content-inner {
+            padding-top: 8px;
+            font-family: 'STIX Two Text', Georgia, serif;
+            font-size: 19px;
+            line-height: 27px;
+            color: #604E6C;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        /* Estados expandidos */
+        .accordion-item.expanded .accordion-toggle {
+            transform: rotate(90deg);
+        }
+
+        .accordion-item.expanded .accordion-content {
+            max-height: 1000px;
+            padding: 0 24px 24px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .header-title {
-                font-size: 16px;
+            /* Header mobile */
+            header {
+                height: 60px !important;
             }
             
-            .hamburger-line {
-                width: 16px;
+            header img {
+                height: 45px !important;
+            }
+            
+            header div:last-child {
+                font-size: 14px !important;
+                white-space: nowrap;
             }
             
             /* Hero responsive */
@@ -230,35 +321,6 @@
                 align-items: flex-start !important;
                 gap: 16px !important;
             }
-            
-            /* Menu mobile styles */
-            .menu-items {
-                top: 24px;
-                left: 24px;
-            }
-            
-            .menu-title {
-                font-size: 2.5rem;
-            }
-            
-            .menu-item {
-                font-size: 2.5rem;
-            }
-            
-            .close-btn {
-                top: 24px;
-                right: 24px;
-                font-size: 2.5rem;
-            }
-            
-            .menu-logo {
-                bottom: 24px;
-                left: 24px;
-            }
-            
-            .menu-logo img {
-                height: 100px;
-            }
 
             .desktop-text {
                 display: none;
@@ -267,16 +329,6 @@
             .mobile-text {
                 display: block;
             }
-        }
-
-        /* Accordion functionality */
-        .accordion-item.expanded .accordion-toggle {
-            transform: rotate(90deg);
-        }
-
-        .accordion-item.expanded .accordion-content {
-            max-height: 500px;
-            padding: 0 24px 24px;
         }
 
         /* Links styling */
@@ -308,42 +360,46 @@
         }
     </style>
 </head>
-<body>
-    <!-- Header glassmorphism estilo The Verge -->
-    <header class="header">
-        <div class="header-content">
-            <a href="#" class="header-title">Voces que inspiran</a>
-            
-            <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()">
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-            </button>
+<body style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; background: #ffffff url('https://i.imgur.com/oRMFOWc.png'); background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; margin: 0; padding: 0;">
+    
+    <script>
+        // Aplicar fondo mobile INMEDIATAMENTE
+        (function() {
+            if (screen.width <= 768 || window.innerWidth <= 768) {
+                document.body.style.cssText = `
+                    font-family: 'STIX Two Text', Georgia, serif;
+                    font-size: 19px;
+                    line-height: 27px;
+                    color: #604E6C;
+                    background: #ffffff url('https://i.imgur.com/gkbeZrq.png');
+                    background-size: cover;
+                    background-attachment: scroll;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    text-rendering: optimizeLegibility;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    overflow-x: hidden;
+                    margin: 0;
+                    padding: 0;
+                `;
+            }
+        })();
+    </script>
+    <!-- Header con logo MEC vuelto a medida anterior -->
+    <header style="position: fixed; top: 0; left: 0; width: 100%; height: 100px; background: white; border-bottom: 1px solid #e2e8f0; z-index: 1000;">
+        <div style="max-width: 1280px; margin: 0 auto; height: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 24px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin-left: -24px;">
+                <img src="https://i.imgur.com/FakCT9f.png" alt="Ministerio de Educación y Cultura" style="height: 96px; width: auto;">
+            </div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 600; color: #604E6C;">
+                Voces que inspiran
+            </div>
         </div>
     </header>
 
-    <!-- MENÚ OVERLAY -->
-    <div class="menu-overlay" id="menuOverlay">
-        <!-- Botón cerrar -->
-        <button class="close-btn" id="closeButton">X</button>
-        
-        <!-- Elementos del menú -->
-        <div class="menu-items">
-            <div class="menu-title">VOCES QUE INSPIRAN</div>
-            <div class="menu-item active" onclick="selectItem(this, 'cecap')">
-                <span class="desktop-text">Centros Educativos de Capacitación, Arte y Producción</span>
-                <span class="mobile-text">CECAP</span>
-            </div>
-        </div>
-        
-        <!-- Logo -->
-        <div class="menu-logo">
-            <img src="https://i.imgur.com/nxFdRHH.png" alt="Ministerio de Educación y Cultura">
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section style="background: #F9FAFB; padding: 120px 24px 96px; min-height: 100vh; display: flex; align-items: center;">
+    <!-- Hero Section con fondo transparente -->
+    <section style="background: transparent; padding: 120px 24px 40px; min-height: 70vh; display: flex; align-items: center;">
         <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; width: 100%;">
             <div>
                 <div style="display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #186A7B; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;">
@@ -383,14 +439,14 @@
                     </div>
                 </div>
             </div>
-            <div style="position: relative; border-radius: 12px; overflow: hidden; transform: translateY(32px);">
+            <div style="position: relative; border-radius: 0; overflow: hidden; transform: translateY(32px);">
                 <img src="https://i.imgur.com/HM7Uobh.jpeg" alt="Estudiantes en CECAP" style="width: 100%; height: 500px; object-fit: cover; transition: transform 0.5s ease;">
             </div>
         </div>
     </section>
 
-    <!-- Article Content -->
-    <div style="max-width: 60ch; margin: 0 auto; padding: 32px 0; min-height: 100vh; position: relative;">
+    <!-- Article Content con menos padding superior -->
+    <div style="max-width: 60ch; margin: 0 auto; padding: 16px 0; min-height: 100vh; position: relative;">
         <div style="background: transparent; padding: 0 24px; position: relative; max-width: 60ch;">
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 Por las puertas de los <a href="http://mec.gub.uy/cecap" class="yellow-link">Centros Educativos de Capacitación, Arte y Producción (CECAP)</a> han ingresado miles de adolescentes uruguayos que, por distintos motivos, en algún momento no encontraron en la educación formal el espacio adecuado para ellos. Jóvenes que estaban por fuera del sistema educativo, y muchas veces, fuera también del ecosistema laboral. La gran mayoría de esos jóvenes que entraron en los Cecaps recuperaron la motivación para pensar un proyecto de vida, para aprender y para crecer.
@@ -400,17 +456,17 @@
                 Los CECAP son una propuesta del Ministerio de Educación y Cultura nacida a comienzos de los 2000, con el objetivo de responder a algunas de las necesidades de los jóvenes entre 14 y 20 años que no han completado la Educación Media Básica y tampoco están trabajando.
             </p>
 
-            <!-- Acordeón -->
-            <div style="border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
-                <div class="accordion-item" style="background: #f8f9fa; margin-bottom: 4px; border-radius: 8px; overflow: hidden; transition: all 0.3s ease;">
-                    <div class="accordion-header" style="padding: 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: background-color 0.15s;">
-                        <button class="accordion-toggle" style="background: none; border: none; color: #604E6C; font-size: 15px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;">
-                            ▶
-                        </button>
-                        <div style="font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 400; color: #604E6C; flex-grow: 1; letter-spacing: -0.02em;">¿En qué se basa la propuesta?</div>
+            <img src="https://i.imgur.com/YMJRGMM.jpeg" alt="Ronda de estudiantes en clase - CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
+
+            <!-- Primer Acordeón -->
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <button class="accordion-toggle">▶</button>
+                        <div class="accordion-title">¿En qué se basa la propuesta?</div>
                     </div>
-                    <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; padding: 0 24px;">
-                        <div style="padding-top: 8px; font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify;">
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
                             En una educación pública centrada en la escucha, el vínculo y el hacer. No es una escuela, no es un liceo y no es un taller. Tampoco es una UTU, aunque tiene vínculos con esta institución. Es, como dice <strong style="font-family: 'STIX Two Text', Georgia, serif; font-weight: 500; font-style: italic; color: #604E6C; font-size: 19px;">Isabel Alende</strong>, coordinadora nacional del programa, "un lugar donde los gurises pueden ser".
                         </div>
                     </div>
@@ -439,9 +495,11 @@
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 Pero más allá de los contenidos que se enseñan en cada taller, lo que distingue a los CECAP tiene que ver con la mirada sobre el otro: "El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar", resume <strong style="font-family: 'STIX Two Text', Georgia, serif; font-weight: 500; font-style: italic; color: #604E6C; font-size: 19px;">Stefanie</strong>, coordinadora del centro de Fray Bentos. "Se toma lo que ellos saben, lo que les interesa, sus posibilidades. Y desde ahí se construye", agrega.
             </p>
+
+            <img src="https://i.imgur.com/wl5gVVC.jpeg" alt="Jóvenes estudiantes riendo en clase - CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
             
-            <div style="display: block; width: 100%; background: rgba(243, 243, 243, 0.3); border-left: 4px solid #186A7B; padding: 24px; border-radius: 4px; margin: 24px 0;">
-                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal;">El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar</p>
+            <div style="display: block; width: 100%; background: transparent; border: none; padding: 24px 0; margin: 24px 0; position: relative;">
+                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal; padding-left: 48px;">El foco está puesto en eso que los jóvenes traen y que pueden y quieren desarrollar</p>
             </div>
             
             <img src="https://i.imgur.com/nveeiMU.jpeg" alt="Enfoque pedagógico centrado en los jóvenes" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
@@ -452,17 +510,18 @@
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 La pedagogía de los CECAP no empieza en el aula. Empieza en la puerta. "Si vos venís a mi casa y yo te espero en la puerta, porque estoy esperando que vengas y quiero darte la bienvenida desde ese momento, eso cambia todo", dice Isabel Alende. Y es así como reciben los referentes a cada joven que llega a los CECAP.
             </p>
+
+            <img src="https://i.imgur.com/kohu5E9.jpeg" alt="Isabel Alende, coordinadora nacional de CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
             
-            <div style="border-radius: 8px; overflow: hidden; margin: 32px 0;">
-                <div class="accordion-item" style="background: #f8f9fa; margin-bottom: 4px; border-radius: 8px; overflow: hidden; transition: all 0.3s ease;">
-                    <div class="accordion-header" style="padding: 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: background-color 0.15s;">
-                        <button class="accordion-toggle" style="background: none; border: none; color: #604E6C; font-size: 15px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;">
-                            ▶
-                        </button>
-                        <div style="font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 400; color: #604E6C; flex-grow: 1; letter-spacing: -0.02em;">¿Qué es la hospitalidad pedagógica?</div>
+            <!-- Segundo Acordeón -->
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <button class="accordion-toggle">▶</button>
+                        <div class="accordion-title">¿Qué es la hospitalidad pedagógica?</div>
                     </div>
-                    <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; padding: 0 24px;">
-                        <div style="padding-top: 8px; font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify;">
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
                             Esperar, recibir, preguntar, acompañar; CECAP funciona con el concepto de <strong style="font-family: 'STIX Two Text', Georgia, serif; font-weight: 500; font-style: italic; color: #604E6C; font-size: 19px;">hospitalidad pedagógica</strong>, desarrollado por Luis Manuel Guerrero Ramos. Se trata de un enfoque de enseñanza que prioriza la relación entre docentes y estudiantes, con base en el respeto, la acogida y la creación de un ambiente seguro para el aprendizaje, con centro en la atención al otro, el reconocimiento de su individualidad y la promoción del diálogo.
                         </div>
                     </div>
@@ -502,6 +561,8 @@
                 "Muchas veces pasa que los gurises llegan diciendo que no saben hacer nada", cuenta Isabel Alende. "Pero después, cuando empezás a charlar con ellos, te dicen que cuidan a sus hermanos, que cocinan, que se encargan de sus abuelos y no podés creer. Hay un montón de trabajo no remunerado, sobre todo en las gurisas, que es invisibilizado. Y nosotros tratamos de resignificar eso, de hacerlo valer", dice.
             </p>
 
+            <img src="https://i.imgur.com/vTpHpAR.jpeg" alt="Jóvenes participando en dinámica grupal en CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
+
             <!-- Quinta sección -->
             <h2 style="font-family: 'Sora', sans-serif; font-size: 21px; font-weight: 600; color: #604E6C; margin: 48px 0 24px 0; padding-top: 32px; border-top: 1px solid rgba(96, 78, 108, 0.1);">Aprender haciendo, otra forma posible</h2>
             
@@ -509,18 +570,15 @@
                 En CECAP aprender tiene que ver con la experiencia, con el hacer. Hay tela para cortar, madera para lijar, canciones para escribir, obras para montar, mates compartidos, conflictos por resolver. "Si yo te digo que hagas una división de dos cifras, capaz me decís que no te acordás cómo se hace", ejemplifica Isabel. "Pero si te digo que tenemos que cortar una tela entre tres personas, entonces empezamos a ver cómo hacerlo. Y ahí, aparece la división", explica.
             </p>
             
-            <img src="https://i.imgur.com/IL7j32E.jpeg" alt="Aprendizaje a través del arte y los talleres" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
-            
-            <div style="border-radius: 8px; overflow: hidden; margin: 32px 0;">
-                <div class="accordion-item" style="background: #f8f9fa; margin-bottom: 4px; border-radius: 8px; overflow: hidden; transition: all 0.3s ease;">
-                    <div class="accordion-header" style="padding: 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: background-color 0.15s;">
-                        <button class="accordion-toggle" style="background: none; border: none; color: #604E6C; font-size: 15px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;">
-                            ▶
-                        </button>
-                        <div style="font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 400; color: #604E6C; flex-grow: 1; letter-spacing: -0.02em;">¿Qué papel juega el arte en CECAP?</div>
+            <!-- Tercer Acordeón -->
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <button class="accordion-toggle">▶</button>
+                        <div class="accordion-title">¿Qué papel juega el arte en CECAP?</div>
                     </div>
-                    <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; padding: 0 24px;">
-                        <div style="padding-top: 8px; font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify;">
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
                             El arte ocupa un lugar central en esa construcción: música, teatro, plástica, danza. "Nos dimos cuenta de que muchos pueden decir un montón de cosas rapeando, que tal vez no pueden decir escribiendo. El arte permite expresar, mostrar, canalizar. Y ahí pasan cosas increíbles", cuenta la coordinadora nacional. "Por eso, en CECAP, la enseñanza se basa en aquello que queremos lograr. A partir de ahí, vemos qué necesitamos aprender".
                         </div>
                     </div>
@@ -530,6 +588,8 @@
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 Aprender haciendo es la clave. Pero también tiene que ver con aprender deseando, aprender con ganas. "Nadie aprende lo que no desea. Y si no conocés, no podés desear. Por eso, el primer semestre en los CECAP es para mostrar a los jóvenes todas las actividades que tenemos. Para que puedan conocer y así elegir. Para que sientan que pueden", dice Alende.
             </p>
+
+            <img src="https://i.imgur.com/7f3wLSz.jpeg" alt="Dinámica de clase y trabajo grupal en CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
 
             <!-- Sexta sección -->
             <h2 style="font-family: 'Sora', sans-serif; font-size: 21px; font-weight: 600; color: #604E6C; margin: 48px 0 24px 0; padding-top: 32px; border-top: 1px solid rgba(96, 78, 108, 0.1);">Una comunidad educativa que abraza</h2>
@@ -548,6 +608,8 @@
                 Para Juan Pablo, el trabajo como educador referente implica "tener la empatía necesaria para buscar y encontrar la motivación de los jóvenes". Reconoce que muchos llegan con baja autoestima, dificultades para vincularse o falta de confianza por parte de sus redes. Por eso, cada avance es una conquista y no hay avances pequeños, son todos significativos: "lo que más me gusta es ver su crecimiento y ver cómo se abren en el proceso", asegura.
             </p>
 
+            <img src="https://i.imgur.com/wTbtayA.jpeg" alt="Trabajo grupal colaborativo en CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
+
             <!-- Séptima sección: José -->
             <h2 style="font-family: 'Sora', sans-serif; font-size: 21px; font-weight: 600; color: #604E6C; margin: 48px 0 24px 0; padding-top: 32px; border-top: 1px solid rgba(96, 78, 108, 0.1);">José: la voz de un estudiante</h2>
             
@@ -562,12 +624,14 @@
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 En ese sentido, José destaca el compañerismo que se vive en el CECAP al que asiste. "En los grupos siempre intentamos ser compañeros unos con otros y ser unidos. Eso es algo que no encontré en otros lugares y es algo a destacar", asegura. En este tiempo, José se hizo amigos, que son "casi hermanos", según cuenta.
             </p>
-            
-            <img src="https://i.imgur.com/nlknNgu.jpeg" alt="Estudiantes de CECAP desarrollando proyectos" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
+
+            <img src="https://i.imgur.com/GeIcvL0.jpeg" alt="Jóvenes estudiantes saludando y sonriendo" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
             
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
                 "El CECAP me cambió una banda", dice José. Él mismo recuerda que, antes, cuando iba a la UTU, muchas veces lo hacía sin ganas o con falta de motivación. Eso cambió cuando encontró su lugar en el CECAP: "Tengo proyectos a futuro. Quiero terminar el CECAP e irme a estudiar Electromecánica a Paysandú", concluye.
             </p>
+
+            <img src="https://i.imgur.com/p0tia4s.jpeg" alt="Joven estudiando concentrado en CECAP" style="width: 100%; height: 500px; object-fit: cover; margin: 32px 0; border-radius: 0;">
 
             <!-- Octava sección -->
             <h2 style="font-family: 'Sora', sans-serif; font-size: 21px; font-weight: 600; color: #604E6C; margin: 48px 0 24px 0; padding-top: 32px; border-top: 1px solid rgba(96, 78, 108, 0.1);">La educación como un hecho reparador</h2>
@@ -576,24 +640,23 @@
                 La propuesta educativa de CECAP se organiza en torno a ejes anuales y comunes a todos los centros, que poco a poco, se van actualizando. Actualmente, hay encuestas de clima, encuentros de delegados, muestras de cierre, espectáculos en el INJU y producciones audiovisuales hechas por los estudiantes.
             </p>
             
-            <div style="border-radius: 8px; overflow: hidden; margin: 32px 0;">
-                <div class="accordion-item" style="background: #f8f9fa; margin-bottom: 4px; border-radius: 8px; overflow: hidden; transition: all 0.3s ease;">
-                    <div class="accordion-header" style="padding: 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: background-color 0.15s;">
-                        <button class="accordion-toggle" style="background: none; border: none; color: #604E6C; font-size: 15px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;">
-                            ▶
-                        </button>
-                        <div style="font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 400; color: #604E6C; flex-grow: 1; letter-spacing: -0.02em;">¿Cómo se mide el verdadero impacto de CECAP?</div>
+            <!-- Cuarto Acordeón -->
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <button class="accordion-toggle">▶</button>
+                        <div class="accordion-title">¿Cómo se mide el verdadero impacto de CECAP?</div>
                     </div>
-                    <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; padding: 0 24px;">
-                        <div style="padding-top: 8px; font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify;">
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
                             El impacto de este programa no se mide solo en cuadernos, ejercicios o evaluaciones. "En CECAP aprendí que la educación va más allá de transmitir conocimientos. Lo más importante es generar vínculos porque es más fácil construir un acto educativo si hay un buen vínculo", asegura Stefanie. "A veces, una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido".
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div style="display: block; width: 100%; background: rgba(243, 243, 243, 0.3); border-left: 4px solid #186A7B; padding: 24px; border-radius: 4px; margin: 24px 0;">
-                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal;">Cada joven tiene una familia detrás y lucha por algo que no es visible. Por eso, cuando se sienten acompañados, vuelven a florecer</p>
+            <div style="display: block; width: 100%; background: transparent; border: none; padding: 24px 0; margin: 24px 0; position: relative;">
+                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal; padding-left: 48px;">Cada joven tiene una familia detrás y lucha por algo que no es visible. Por eso, cuando se sienten acompañados, vuelven a florecer</p>
             </div>
             
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
@@ -660,8 +723,8 @@
                 Los educadores y referentes no son solo formadores: son compañeros de ruta, un oído que escucha y un hombro que sostiene. Acompañan desde la empatía, respetan los tiempos, celebran cada avance. Y en ese vínculo humano —genuino, paciente, comprometido— se funda la transformación.
             </p>
             
-            <div style="display: block; width: 100%; background: rgba(243, 243, 243, 0.3); border-left: 4px solid #186A7B; padding: 24px; border-radius: 4px; margin: 24px 0;">
-                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal;">Una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido</p>
+            <div style="display: block; width: 100%; background: transparent; border: none; padding: 24px 0; margin: 24px 0; position: relative;">
+                <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.4; color: #382047; font-weight: 400; margin: 0; text-align: left; font-style: normal; padding-left: 48px;">Una escucha atenta o una palabra de aliento puede ser más transformadora que cualquier contenido</p>
             </div>
             
             <p style="font-family: 'STIX Two Text', Georgia, serif; font-size: 19px; line-height: 27px; color: #604E6C; font-weight: 400; text-align: justify; margin-bottom: 20px;">
@@ -732,95 +795,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer style="margin-top: 48px; background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); border-top: 1px solid #e2e8f0; position: relative; overflow: hidden;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 48px;">
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <img src="https://i.imgur.com/FakCT9f.png" alt="Dirección Nacional de Educación" style="height: 48px; width: auto; filter: brightness(0.8);">
-                        <div>
-                            <h3 style="font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 700; color: #604E6C; margin: 0;">Dirección Nacional de Educación</h3>
-                        </div>
-                    </div>
-                    <p style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: #6b7280; margin-bottom: 24px;">
-                        Desarrollando programas educativos innovadores como CECAP, PNEC y PAS para la inclusión 
-                        y calidad educativa en todo el territorio nacional. Una educación pública que abraza, 
-                        acompaña y transforma vidas.
-                    </p>
-                </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <h4 style="font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 600; color: #604E6C; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Programas</h4>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <a href="https://mec.gub.uy/cecap" style="font-family: 'Inter', sans-serif; font-size: 14px; color: #718096; text-decoration: none; transition: all 0.2s ease; padding: 4px 0;" target="_blank">CECAP</a>
-                        <a href="#" style="font-family: 'Inter', sans-serif; font-size: 14px; color: #718096; text-decoration: none; transition: all 0.2s ease; padding: 4px 0;">PNEC</a>
-                        <a href="#" style="font-family: 'Inter', sans-serif; font-size: 14px; color: #718096; text-decoration: none; transition: all 0.2s ease; padding: 4px 0;">PAS</a>
-                        <a href="https://mec.gub.uy" style="font-family: 'Inter', sans-serif; font-size: 14px; color: #718096; text-decoration: none; transition: all 0.2s ease; padding: 4px 0;" target="_blank">Sobre DNE</a>
-                    </div>
-                </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <h4 style="font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 600; color: #604E6C; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Conectar</h4>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                        <a href="https://mec.gub.uy/cecap" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 4px; transition: all 0.2s ease; text-decoration: none;">
-                            <div style="width: 28px; height: 28px; border-radius: 50%; background: #186A7B; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                                </svg>
-                            </div>
-                            <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; font-weight: 500;">Sitio Oficial</span>
-                        </a>
-                        
-                        <a href="https://www.gub.uy/ministerio-educacion-cultura/sites/ministerio-educacion-cultura/files/documentos/publicaciones/DNE-libro%20CECAP_No%20da%20lo%20mismo_web.pdf" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 4px; transition: all 0.2s ease; text-decoration: none;">
-                            <div style="width: 28px; height: 28px; border-radius: 50%; background: #186A7B; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 4h8a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H2z"/>
-                                    <path d="M22 4h-8a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h8z"/>
-                                </svg>
-                            </div>
-                            <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; font-weight: 500;">Libro CECAP</span>
-                        </a>
-                        
-                        <a href="https://www.instagram.com/educacion_mec/" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 4px; transition: all 0.2s ease; text-decoration: none;">
-                            <div style="width: 28px; height: 28px; border-radius: 50%; background: #186A7B; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                                </svg>
-                            </div>
-                            <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; font-weight: 500;">Instagram</span>
-                        </a>
-                        
-                        <a href="https://mec.gub.uy" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 4px; transition: all 0.2s ease; text-decoration: none;">
-                            <div style="width: 28px; height: 28px; border-radius: 50%; background: #186A7B; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                                    <polyline points="9,22 9,12 15,12 15,22"/>
-                                </svg>
-                            </div>
-                            <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; font-weight: 500;">MEC</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid #e2e8f0; flex-wrap: wrap; gap: 16px;">
-                <p style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; margin: 0;">
-                    © <span style="font-weight: 600; color: #604E6C;">2025</span> Ministerio de Educación y Cultura • Dirección Nacional de Educación
-                </p>
-                <a href="https://mec.gub.uy" target="_blank" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280; text-decoration: none; padding: 8px 12px; background: rgba(96, 78, 108, 0.05); border-radius: 12px; transition: all 0.2s ease;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
-                    Educación Pública Uruguay
-                </a>
-            </div>
-        </div>
+    <!-- Footer oculto -->
+    <footer style="display: none;">
     </footer>
 
     <script>
@@ -845,7 +821,6 @@
         }
 
         function closeMenu() {
-            console.log('Cerrando menú...'); // Para debug
             const overlay = document.getElementById('menuOverlay');
             const hamburger = document.getElementById('hamburgerBtn');
             
@@ -860,53 +835,52 @@
             });
             
             element.classList.add('active');
-            console.log('Navegando a:', section);
             
             setTimeout(() => {
                 closeMenu();
             }, 500);
         }
 
-        // Múltiples formas de asignar el event listener
+        // FUNCIÓN DE ACORDEÓN CORREGIDA
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const isExpanded = item.classList.contains('expanded');
+            
+            // Cerrar todos los otros acordeones
+            document.querySelectorAll('.accordion-item.expanded').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle del item actual
+            if (isExpanded) {
+                item.classList.remove('expanded');
+            } else {
+                item.classList.add('expanded');
+            }
+        }
+
+        // DETECTAR MOBILE Y APLICAR FONDO - VERSIÓN SIMPLE
+        if (window.innerWidth <= 768) {
+            document.body.style.background = '#ffffff url(https://i.imgur.com/gkbeZrq.png)';
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundAttachment = 'scroll';
+        }
+
+        // Event listeners
         window.addEventListener('load', function() {
             const closeButton = document.getElementById('closeButton');
             if (closeButton) {
-                console.log('Botón X encontrado, asignando evento...'); // Para debug
                 closeButton.onclick = function() {
-                    console.log('Click en X detectado'); // Para debug
                     closeMenu();
                 };
-            } else {
-                console.log('Error: No se encontró el botón X'); // Para debug
             }
-            
-            // Initialize accordion functionality
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const item = this.parentElement;
-                    const isExpanded = item.classList.contains('expanded');
-                    
-                    // Close all other accordion items
-                    const accordion = item.closest('div[style*="border-radius: 8px"]');
-                    if (accordion) {
-                        accordion.querySelectorAll('.accordion-item.expanded').forEach(openItem => {
-                            if (openItem !== item) {
-                                openItem.classList.remove('expanded');
-                            }
-                        });
-                    }
-                    
-                    // Toggle current item
-                    if (isExpanded) {
-                        item.classList.remove('expanded');
-                    } else {
-                        item.classList.add('expanded');
-                    }
-                });
-            });
         });
 
-        // Cerrar con ESC
+        // Close menu with ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeMenu();
